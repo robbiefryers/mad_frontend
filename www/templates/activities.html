@@ -1,0 +1,45 @@
+<ion-view view-title="Maryhill Activity Directory">
+	<ion-header-bar id="filterHeader" align-title="left" class='bar-subheader has-header'>
+		<div class="row filterRow">
+			<div class="col col-80 text-left">
+				<div class="list list-inset" id="filterBar">
+					<label class="item item-input">
+						<i class="icon ion-ios-people-outline placeholder-icon"></i>
+						<input type="text" placeholder="All Activities">
+					</label>
+				</div>
+			</div>
+
+			<div class="col col-20 text-center">
+				<button class="button button-icon" id="filterButton" ng-click="openModal(1)">
+					<i class="ion-android-options custom-icon"></i>
+				</button>
+			</div>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+	
+
+		<div>
+			<div class="row rowHead">
+				<div class="col col-25 text-left">Activity</div>
+				<div class="col col-25 text-left">Day(s)</div>
+				<div class="col col-30 text-left">Time(s)</div>
+				<div class="col col-20 text-left">Ages</div>
+			</div>
+		</div>
+		<ion-list >
+			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in items" >
+				<a class="row" id="actLink" href="#/app/activityInfo">
+					<div class="col col-25">{{item.id}}</div>
+					<div class="col col-25">{{item.name}}<p>Friday</p></div>
+					<div class="col col-30">19:30 - 20:30<p>21:00 - 22:00</p></div>
+					<div class="col col-20">12-18</div>
+				</a>
+
+			</ion-item>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

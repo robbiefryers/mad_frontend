@@ -1,0 +1,24 @@
+<ion-view view-title="Maryhill Activity Directory">
+ 	<ion-header-bar align-title="left" class='bar-subheader has-header'>
+		<h2 class="title">Log In</h2>
+	</ion-header-bar>
+	
+	<ion-content class="has-subheader">
+		<div class="padding">
+			<p>If you run an activity please use the log in below to view and make changes to any activities.</p>
+			<label class="item item-input">
+				<input type="text" placeholder="First Name">
+			</label>
+			<label class="item item-input">
+				<input type="text" placeholder="Last Name">
+			</label>
+
+			<button class="button button-block button-positive" ng-click="openM()">Log In</button>
+		</div>
+		<div ng-repeat="smugler in smuglers" style="margin:4px;float:left;" class="list list-inset">
+			<button class="button button-medium" ng-click="getDetails(smugler)">
+				<b>{{smugler.name}}   {{smugler.lastname}}</b>
+			</button>
+		</div>
+	</ion-content>
+</ion-view>

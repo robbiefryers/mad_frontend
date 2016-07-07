@@ -1,0 +1,56 @@
+<ion-modal-view class="modal transparent" id="filterMainModal" >
+	<ion-header-bar>
+		<div class="buttons">
+			<h1 class="title"> Filters</h1>
+			<button class="button button-icon ion-ios-close-empty" ng-click="closeModal(1)"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content id="modalHeader">
+
+
+		<ion-list >
+			<ion-item class="modalRow" ng-click="openModal(2)">
+				<div class="row">
+					<div class="col col-100" id="dayHeader">Day(s)</div>
+				</div>
+
+				<div class="row">
+					<div class="col col-100" id="dayLabel">tap to select days</div>
+				</div>
+			</ion-item>
+
+			<ion-item ng-click="openModal(2)">
+				<div class="row">
+					<div class="col col-100" id="dayHeader">Category</div>
+				</div>
+				<div class="row">
+					<div class="col col-100" id="dayLabel">tap to select categories</div>
+				</div>
+			</ion-item>
+
+			<ion-item>
+				<div class="row">
+					<div class="col col-100" id="dayHeader">Time</div>
+				</div>
+				
+				<div class="row" id="timeRow">
+					<div class="button-bar">
+						<a class="button dayBf">9-12</a>
+						<a class="button dayB">12-15</a>
+						<a class="button dayB">15-18</a>
+						<a class="button">18-22</a>
+					</div>
+				</div>
+			</ion-item>
+
+		</ion-list>
+	</ion-content>
+
+	<div class="bar bar-footer">
+		<div class="col col-100 text-right">
+			<button class="button button-positive">Cancel</button>
+			<button class="button button-positive" ng-click="closeModal(2)">Search</button>
+		</div>
+	</div>
+</ion-modal-view>

@@ -1,0 +1,42 @@
+<ion-view view-title="Maryhill Activity Directory">
+ 	<ion-header-bar align-title="left" class='bar-subheader has-header'>
+		<h2 class="title">Contact</h2>
+	</ion-header-bar>
+
+	<ion-content class="has-subheader">
+		<div class = "padding">
+			<div class="list card">
+				<div class="item item-avatar">
+					<img src="jim.jpg">
+					<h2>Mr. Jim Hamilton</h2>
+					<p>Parish Deacon</p>
+					<p>jim@mail.com</p>
+				</div>
+			</div>
+			<div class="list card">
+				<div class="item item-avatar">
+					<img src="stuart.jpg">
+					<h2>Rev Stuart Matthews</h2>
+					<p>Minister</p>
+					<p>stuart@stuart.com</p>
+				</div>
+			</div>
+			<div class="list card">
+				<div class="item item-avatar">
+					<h2>Iona Craig</h2>
+					<p>Iona's title</p>
+					<p>iona@mail.com {{ lastName }}</p>
+				</div>
+			</div>
+      <div class="item item-text-wrap">
+     <button class="button button-medium" ng-click="getDetails()">Hit server</button>
+		<div ng-repeat="d in myData">
+		        the name is{{d.name}}
+		</div>
+    </div>
+	
+		</div>
+	
+		</div>
+	</ion-content>
+</ion-view>

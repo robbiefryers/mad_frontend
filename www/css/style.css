@@ -27,6 +27,16 @@
    line-height: 60px;
 }
 
+.sideNav {
+	height: 60px;
+}
+
+.sideNav .title {
+   line-height: 60px;
+}
+
+
+
 .has-header {
    top: 60px;
 }
@@ -51,7 +61,6 @@
 	color: black;
 }
 .rowItem {
-	border-color:grey;
 	border-left: none;
 	border-right: none;
 	font-size: 14px;
@@ -147,6 +156,11 @@
 
 #modalHeader, #modalHeaderD {
 	top: 40px;
+}
+
+#modalHeader .item {
+	border-color: white;
+	
 }
 
 #dayLabel {
