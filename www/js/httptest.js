@@ -8,7 +8,7 @@ module.controller('HomeCtrl',function($scope,$http,$ionicPopup,ApiEndpoint){
 
 		$http({
 		  method: 'GET',
-		  url: ApiEndpoint.url
+		  url: ApiEndpoint.url + 'categories'
 		}).then(function successCallback(response) {
 			alert("Success wooo");
 			$scope.myData = response.data;

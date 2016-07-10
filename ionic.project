@@ -1,6 +1,6 @@
 {
-  "name": "myApp",
-  "app_id": "",
+  "name": "starter",
+  "app_id": "starter",
 
   "gulpStartupTasks": [
     "sass",

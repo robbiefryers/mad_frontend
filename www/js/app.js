@@ -1,17 +1,18 @@
 // Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('maryhill', ['ionic', 'starter.controllers', 'ui.router'])
 
 .constant('ApiEndpoint',{
-  url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/categories/'
+  url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/'
 })
 
 .config(function($ionicConfigProvider) {
+    $ionicConfigProvider.views.transition('none');
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
+
 })
 
 .run(function($ionicPlatform) {
@@ -38,6 +39,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 
 
+.service("allInfo", function AllInfo() {
+  var AllInfo = this;
+
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -47,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
   })
+
   .state('app.activities', {
     url: "/activities",
     views: {
@@ -62,7 +69,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
    url: "/activityInfo",
    views: {
      'menuContent': {
-       templateUrl: "templates/activityInfo.html"
+       templateUrl: "templates/activityInfo.html",
+       controller: 'infoCtrl'
      }
    }
  })

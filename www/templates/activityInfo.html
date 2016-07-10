@@ -1,8 +1,62 @@
-<ion-view view-title="Karate">
+<ion-view view-title="Maryhill Activity Directory">
 	<ion-content class="padding">
-		<h1>Karate</h1>
-		<div class="padding">
-		More info about karate here, address, contact details, special info etc
-		</div>
+		<div class="list card">
+			<div class="item">
+				<h2>{{sharedInfo.name}}</h2>
+			</div>
+			
+			<div class="item item-body">
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-ios-location iconI"></i>
+							{{sharedInfo.venue}}
+					</div>
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-android-person iconI"></i>
+							{{sharedInfo.contactName}}
+					</div>
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-ios-telephone iconI"></i>
+							{{sharedInfo.number}}
+					</div>
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-at iconI"></i>
+							{{sharedInfo.contactEmail}}
+					</div>
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-clipboard iconI"></i>
+							<div class="special">{{sharedInfo.special}}</div>
+					</div>
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-android-time iconI"></i>
+						<div class="row">
+						<div class="col col-40 dayList">
+							<p ng-repeat="d in sharedInfo.days">{{d.day }}</p>
+						</div>
+						<div class="col col-40">
+							<p ng-repeat="d in sharedInfo.days">{{d.startTime | limitTo:5:0}} - {{d.endTime | limitTo:5:0}} </p>
+						</div>
+						</div>
+					</div>
+	
+				</div>
+				<div class="item infoItem">
+					<div class="item-icon-left iconWriting">
+						<i class="icon ion-ios-people iconI"></i>
+							{{sharedInfo.agesLower}} - {{sharedInfo.agesUpper}}
+					</div>
+				</div>
+
+		
 	</ion-content>
 </ion-view>

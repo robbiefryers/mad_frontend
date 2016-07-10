@@ -2,6 +2,7 @@
 	<ion-header-bar>
 		<div class="buttons">
 			<h1 class="title"> Filters</h1>
+			<input type="text" data-ng-model="tester" placeholder="All Activities">
 			<button class="button button-icon ion-ios-close-empty" ng-click="closeModal(1)"></button>
 		</div>
 	</ion-header-bar>
@@ -12,7 +13,8 @@
 		<ion-list >
 			<ion-item class="modalRow" ng-click="openModal(2)">
 				<div class="row">
-					<div class="col col-100" id="dayHeader">Day(s)</div>
+					<div class="col col-100" id="dayHeader">Day(s) {{tester}}</div>
+
 				</div>
 
 				<div class="row">
@@ -30,8 +32,12 @@
 			</ion-item>
 
 			<ion-item>
+			
+			</ion-item>
+
+			<ion-item>
 				<div class="row">
-					<div class="col col-100" id="dayHeader">Time</div>
+					<div class="col col-100" id="dayHeader"></div>
 				</div>
 				
 				<div class="row" id="timeRow">
@@ -43,6 +49,8 @@
 					</div>
 				</div>
 			</ion-item>
+
+
 
 		</ion-list>
 	</ion-content>

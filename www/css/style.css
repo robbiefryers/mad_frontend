@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+
+.activityBody {
+	font-size: 12px;
+}
 #search {
 	width: 100%;
 }
@@ -63,11 +67,12 @@
 .rowItem {
 	border-left: none;
 	border-right: none;
-	font-size: 14px;
+	font-size: 12px;
 } 
 
 .rowItem p {
-	color: grey;
+	color: black;
+	font-size: 12px;
 } 
 
 #filterHeader {
@@ -180,4 +185,34 @@
 #timeRow {
 	margin-top: 15px;
 	margin-bottom: 60px;
+}
+
+.infoItem {
+
+	min-height: 60px;
+	padding-left: 3px;
+	white-space: normal;
+}
+
+.iconWriting {
+	padding-left: 40px;
+	
+}
+
+.iconWriting p {
+color: black;
+}
+
+.special {
+	color:red;
+}
+
+.iconI {
+	left: -2px !important;
+}
+
+.dayList {
+
+	margin-left:-10px !important;
+
 }
