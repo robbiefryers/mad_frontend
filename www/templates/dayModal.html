@@ -9,14 +9,22 @@
 	<ion-content id="modalHeaderD">
 
 		<ion-list>
-			<ion-checkbox>Monday</ion-checkbox>
-			<ion-checkbox>Tuesday</ion-checkbox>
-			<ion-checkbox>Wednesday</ion-checkbox>
-			<ion-checkbox>Thursday</ion-checkbox>
-			<ion-checkbox>Friday</ion-checkbox>
-			<ion-checkbox>Saturday</ion-checkbox>
-			<ion-checkbox>{{tester}}</ion-checkbox>
+			<ion-checkbox ng-model="modalData[0].checked">Monday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[1].checked">Tuesday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[2].checked">Wednesday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[3].checked">Thursday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[4].checked">Friday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[5].checked">Saturday</ion-checkbox>
+			<ion-checkbox ng-model="modalData[6].checked">Sunday</ion-checkbox>
 		</ion-list>
 
+
+
 	</ion-content>
+
+	<ion-footer-bar align-title="left" class="bar-assertive">
+		<button class="button footButton2 button-positive pull-right" ng-click="closeModal(2)">Ok</button>
+	</ion-footer-bar>
+
+
 </ion-modal-view>

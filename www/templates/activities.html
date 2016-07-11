@@ -5,7 +5,7 @@
 				<div class="list list-inset" id="filterBar">
 					<label class="item item-input">
 						<i class="icon ion-ios-people-outline placeholder-icon"></i>
-						<input type="text" data-ng-model="searchText" placeholder="All Activities">
+						<input type="text" data-ng-model="searchText.name" placeholder="All Activities">
 					</label>
 				</div>
 			</div>
@@ -23,17 +23,17 @@
 
 		<div>
 			<div class="row rowHead">
-				<div class="col col-25 text-left">{{tester}}</div>
+				<div class="col col-25 text-left">Activity</div>
 				<div class="col col-25 text-left">Day(s)</div>
 				<div class="col col-30 text-left">Time(s)</div>
 				<div class="col col-20 text-left">Ages</div>
 			</div>
 		</div>
 		<ion-list >
-			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: search" ng-click="movePage({data: item})">
+			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchDays |filter: searchText" ng-click="movePage({data: item})">
 				<a class="row" id="actLink">
 					<div class="col col-25">{{item.name}}</div>
-					<div class="col col-25"><p ng-repeat="d in item.days">{{d.day }}</p></div>
+					<div class="col col-25"><p ng-repeat="d in item.days">{{d.day}}</p></div>
 					<div class="col col-30"><p ng-repeat="t in item.days">
 					{{t.startTime | limitTo:5:0}}-{{t.endTime | limitTo:5:0}}</p></div>
 					<div class="col col-20">{{item.agesLower}}-{{item.agesUpper}}</div>

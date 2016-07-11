@@ -88,15 +88,40 @@
      right: 5%; 
 }
 
+#filterMainModal .bar-footer{
+     height: 11%; 
+
+}
+
 
 #dayModal{
      width: 90%; 
-     height: 40%; 
-     top: 20%; 
+     height: 50%; 
+     top: 15%; 
      left: 5%; 
      right: 5%; 
-
 }
+
+#dayModal .bar-footer{
+     height: 15%; 
+}
+
+.footButton1{
+	height: 40px;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.footButton2 {
+	width:60px;
+	height: 40px;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+.has-footer{
+bottom: 55px;
+}
+
 
 /* Fix modal backdrop for smaller devices */
 

@@ -1,8 +1,5 @@
-// Ionic Starter App
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('maryhill', ['ionic', 'starter.controllers', 'ui.router'])
+
+angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router'])
 
 .constant('ApiEndpoint',{
   url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/'
@@ -51,7 +48,7 @@ angular.module('maryhill', ['ionic', 'starter.controllers', 'ui.router'])
     url: "/app",
     abstract: true,
     templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
+    
   })
 
   .state('app.activities', {
@@ -89,7 +86,6 @@ angular.module('maryhill', ['ionic', 'starter.controllers', 'ui.router'])
     views: {
       'menuContent': {
         templateUrl: "templates/contact.html",
-        controller: 'HomeCtrl'
 
       }
     }

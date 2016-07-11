@@ -1,4 +1,2 @@
-angular.module('starter.controllers', [])
+angular.module('maryhillControllers', [])
 
-.controller('AppCtrl', function() {
-})
