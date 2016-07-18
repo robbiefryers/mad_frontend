@@ -7,10 +7,6 @@
 	width: 100%;
 }
 
-.custom-icon {
-  font-size: 32px;
-  text-align: right;
-}
 
 .filterRow {
 	background-color:#f2f2f2;
@@ -21,7 +17,11 @@
 }
 
 #filterButton {
-	margin-top: 8px;
+	margin-top: 2px;
+	width:47px;
+	height: 47px;
+	font-size: 30px;
+	background-color: #d9d9d9;
 }
 .myNav{
   height: 60px;
@@ -89,7 +89,7 @@
 }
 
 #filterMainModal .bar-footer{
-     height: 11%; 
+     height: 50px; 
 
 }
 
@@ -103,18 +103,18 @@
 }
 
 #dayModal .bar-footer{
-     height: 15%; 
+     height: 50px; 
 }
 
 .footButton1{
-	height: 40px;
+	height: 30px;
 	margin-top: 5px;
 	margin-left: 10px;
 }
 
 .footButton2 {
 	width:60px;
-	height: 40px;
+	height: 30px;
 	margin-top: 5px;
 	margin-right: 10px;
 }
@@ -168,16 +168,6 @@ bottom: 55px;
 
 
 
-
-.dayB {
-	border-right: solid 1.5px #E2E2E2 !important;
-}
-
-.dayBf {
-	border-right: solid 1.5px #E2E2E2 !important;
-
-}
-
 .col-25 {
 	white-space: normal;
 }
@@ -207,9 +197,12 @@ bottom: 55px;
 	border-bottom: 2px solid #E2E2E2;
 }
 
-#timeRow {
-	margin-top: 15px;
-	margin-bottom: 60px;
+#timeRow1, #timeRow2  {
+	padding: 0px;
+}
+
+#timeRow1 {
+	margin-top: 10px;
 }
 
 .infoItem {
@@ -237,7 +230,18 @@ color: black;
 }
 
 .dayList {
-
 	margin-left:-10px !important;
-
 }
+
+.time_picker_box_text {
+  height: 40px;
+  text-align: center;
+  border: 1px solid #dddddd;
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.time_picker_arrows {
+  width: 100%;
+}
+

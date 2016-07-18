@@ -7,9 +7,9 @@
 	</ion-header-bar>
 
 	<ion-content id="modalHeader">
-
-
 		<ion-list >
+
+			<!-- _______________ Day Selector _______________ -->
 			<ion-item class="modalRow" ng-click="openModal(2)">
 				<div class="row">
 					<div class="col col-100" id="dayHeader">Day(s)</div>
@@ -21,6 +21,7 @@
 				</div>
 			</ion-item>
 
+			<!-- _______________ Category Selector _______________ -->
 			<ion-item>
 				<div class="row">
 					<div class="col col-100" id="dayHeader">Category</div>
@@ -30,18 +31,101 @@
 				</div>
 			</ion-item>
 
+			<!-- _______________ Times Selector _______________ -->
 			<ion-item>
 				<div class="row">
-					<div class="col col-100" id="dayHeader">Time {{modalData.msg}}</div>
+					<div class="col col-100" id="dayHeader">Times</div>
 				</div>
-				
-				<div class="row" id="timeRow">
-					<div class="button-bar">
-						<a class="button dayBf">9-12 </a>
-						<a class="button dayB">12-15</a>
-						<a class="button dayB">15-18</a>
-						<a class="button">18-22</a>
+				<div class="row">
+					<div class="col col-20 col-center">
+						From
 					</div>
+
+					<div class="col col-30">
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="increaseStartTime()">
+							<i class="icon ion-chevron-up"></i>
+						</button>
+
+						<div class="time_picker_box_text" ng-if="startTime <10 ">0{{startTime}}:00</div>
+						<div class="time_picker_box_text" ng-if="startTime >=10"> {{startTime}}:00</div>
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="decreaseStartTime()">
+							<i class="icon ion-chevron-down"></i>
+						</button>
+					</div>
+
+					<div class="col col-30">
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="increaseEndTime()">
+							<i class="icon ion-chevron-up"></i>
+						</button>
+
+						<div class="time_picker_box_text" ng-if="endTime <10 ">0{{endTime}}:00</div>
+						<div class="time_picker_box_text" ng-if="endTime >=10">{{endTime}}:00</div>
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="decreaseEndTime()">
+							<i class="icon ion-chevron-down"></i>
+						</button>
+					</div>
+
+					<div class="col col-20 col-center text-right">
+						To
+					</div>
+
+				</div>
+			</ion-item>
+
+			<!-- _______________ Ages Selector _______________ -->
+			<ion-item>
+				<div class="row">
+					<div class="col col-100" id="dayHeader">Ages</div>
+				</div>
+				<div class="row">
+					<div class="col col-20 col-center">
+						From
+					</div>
+
+					<div class="col col-30">
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="increaseLowAge()">
+							<i class="icon ion-chevron-up"></i>
+						</button>
+
+						<div class="time_picker_box_text" ng-if="agesLow == 0"> Any</div>
+						<div class="time_picker_box_text" ng-if="agesLow != 0"> {{agesLow}}</div>
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="decreaseLowAge()">
+							<i class="icon ion-chevron-down"></i>
+						</button>
+					</div>
+
+					<div class="col col-30">
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="increaseHighAge()">
+							<i class="icon ion-chevron-up"></i>
+						</button>
+
+						<div class="time_picker_box_text" ng-if="agesUp == 65"> Any</div>
+						<div class="time_picker_box_text" ng-if="agesUp != 65"> {{agesUp}}</div>
+
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows"
+							ng-click="decreaseHighAge()">
+							<i class="icon ion-chevron-down"></i>
+						</button>
+					</div>
+
+					<div class="col col-20 col-center text-right">
+						To
+					</div>
+
 				</div>
 			</ion-item>
 
@@ -49,7 +133,7 @@
 
 	</ion-content>
 		<ion-footer-bar align-title="left" class="bar-assertive">
-		<button class="button footButton1 button-positive pull-left" ng-click="closeModal()">Clear Filters</button>
+		<button class="button footButton1 button-positive pull-left" ng-click="clearFilters()">Clear Filters</button>
 		<button class="button footButton2 button-positive pull-right" ng-click="closeModal(1)">Ok</button>
 	</ion-footer-bar>
 
