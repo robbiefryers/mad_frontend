@@ -1,5 +1,5 @@
 <ion-view view-title="Maryhill Activity Directory">
-	<ion-header-bar id="filterHeader" align-title="left" class='bar-subheader has-header'>
+	<div class="bar" id="filterHeader">
 		<div class="row filterRow">
 			<div class="col col-80 text-left">
 				<div class="list list-inset" id="filterBar">
@@ -16,21 +16,24 @@
 				</button>
 			</div>
 		</div>
-	</ion-header-bar>
-
-	<ion-content class="activityBody">
+	</div>
 	
-
-		<div>
-			<div class="row rowHead">
-				<div class="col col-25 text-left">Activity</div>
-				<div class="col col-25 text-left">Day(s)</div>
-				<div class="col col-30 text-left">Time(s)</div>
-				<div class="col col-20 text-left">Ages</div>
-			</div>
+	<div class="bar" id="filterSubheader">
+		<div class="row rowHead">
+			<div class="col col-25 text-left">Activity</div>
+			<div class="col col-25 text-left">Day(s)</div>
+			<div class="col col-30 text-left">Time(s)</div>
+			<div class="col col-20 text-left">Ages</div>
 		</div>
+	</div>
+
+	<ion-content class="activityBody has-subheader">
+
+
+		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
 		<ion-list >
-			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchDays |filter: searchText |filter: searchAges |filter: searchTimes" ng-click="movePage({data: item})">
+		
+			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchDays |filter: searchText |filter: searchAges |filter: searchTimes |filter: searchCategories" ng-click="movePage({data: item})">
 				<a class="row" id="actLink">
 					<div class="col col-25">{{item.name}}</div>
 					<div class="col col-25"><p ng-repeat="d in item.days">{{d.day}}</p></div>
@@ -40,6 +43,8 @@
 				</a>
 
 			</ion-item>
+
 		</ion-list>
+		
 	</ion-content>
 </ion-view>

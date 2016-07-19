@@ -1,6 +1,7 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,ApiEndpoint, allInfo) {
+module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
+
 
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
@@ -17,6 +18,29 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,Ap
 	$scope.startTime = 8;
 	$scope.endTime = 24;
 
+    $http({
+      method: 'GET',
+      url: ApiEndpoint.url + 'activities'
+    }).then(function successCallback(response) {
+      $scope.myData = response.data;
+      }, function errorCallback(response) {
+      	$scope.showAlert();
+
+      });
+
+    $http({
+      method: 'GET',
+      url: ApiEndpoint.url + 'categories'
+    }).then(function successCallback(response) {
+    	$scope.catData =[];
+		for(i=0; i<response.data.length; i++) {
+			$scope.catData[i] = {cat: response.data[i].name , checked: false};
+		}
+      }, function errorCallback(response) {
+      	$scope.showAlert();
+
+      });
+
 	$scope.clearFilters = function() {
 		$scope.agesUp =65;
 		$scope.agesLow = 0;
@@ -25,6 +49,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,Ap
 		for(i=0; i<7; i++){
 			$scope.modalDays[i].checked=false;
 		}
+		console.log($scope.catData);
 		
 	}
 
@@ -95,7 +120,6 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,Ap
 				$scope.endTime >= parseInt(item.days[i].endTime.substring(0, 2))){
 				return true;
 			}
-
 		}	
 		return false;
 	}
@@ -140,6 +164,29 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,Ap
 
 
 
+    $scope.searchCategories = function(item) {
+    	//go through monday to friday check boxes
+    	var count=0;
+    	for (i=0; i<$scope.catData.length; i++) {
+    		//if a check box is checked, loop through items days to see if 
+    		//they match the check box day
+    		if($scope.catData[i].checked == true) {
+    			count ++;
+    			for (j=0; j<item.cats.length; j++){
+    				if ((item.cats[j].catName.name.indexOf($scope.catData[i].cat)) !=-1){
+    					return true; 
+    				}
+    			}
+    		}
+    	}
+		//the count will be 0 if no checkboxes are checked in which case we want to
+		//return all of the items
+   		if (count == 0 ){
+   			return true;
+   		}
+    	return false;
+    };
+
 
   // Modal 1
     $ionicModal.fromTemplateUrl('templates/filterMainModal.html', function(modal) {
@@ -161,30 +208,54 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,Ap
         focusFirstInput: true
       });
 
+    // Modal 3
+    $ionicModal.fromTemplateUrl('templates/categoryModal.html', function(modal) {
+      $scope.oModal3 = modal;
+      }, {
+        id: '3',
+        scope: $scope,
+        animation: 'scale-in',//'slide-left-right', 'slide-in-up', 'slide-right-left'
+        focusFirstInput: true
+      });
   
 
     $scope.openModal = function(index) {
       if (index == 1) $scope.oModal1.show();
-      else $scope.oModal2.show();
+      else if (index ==2) $scope.oModal2.show();
+      else $scope.oModal3.show();
     };
 
     $scope.closeModal = function(index) {
       if (index == 1) $scope.oModal1.hide();
-      else $scope.oModal2.hide();
+      else if (index ==2) $scope.oModal2.hide();
+      else $scope.oModal3.hide();
     };
 
 
+  $scope.showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+     	title: "Network Error",
+      template: "M.A.D. could not retrieve the activities for you. Please check your data connection and 'pull down' the page to refresh",
+      okType: "button-positive"
+    });
+    
+    alertPopup.then(function(res) {
+    
+    });
+  }; 
 
+    $scope.doRefresh = function() {
+		$http({
+			method: 'GET',
+			url: ApiEndpoint.url + 'activities'
+		}).then(function successCallback(response) {
+			$scope.myData = response.data;
 
-    $http({
-      method: 'GET',
-      url: ApiEndpoint.url + 'activities'
-    }).then(function successCallback(response) {
-      $scope.myData = response.data;
-      console.log($scope.myData);
-      }, function errorCallback(response) {
-
-      });
+		}, function errorCallback(response) {
+			$scope.showAlert();
+		});
+    	$scope.$broadcast('scroll.refreshComplete');
+  };
 
 
     $scope.movePage = function(n) {

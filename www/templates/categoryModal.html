@@ -1,0 +1,24 @@
+<ion-modal-view class="modal transparent" id="dayModal" >
+	<ion-header-bar>
+		<div class="buttons">
+			<h1 class="title">Categories</h1>
+			<button class="button button-icon ion-ios-close-empty" ng-click="closeModal(3)"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content id="modalHeaderD">
+
+		<ion-list ng-repeat="item in catData">
+			<ion-checkbox ng-model="catData[$index].checked">{{item.cat}}</ion-checkbox>
+		</ion-list>
+
+
+
+	</ion-content>
+
+	<ion-footer-bar align-title="left" class="bar-assertive">
+		<button class="button footButton2 button-positive pull-right" ng-click="closeModal(3)">Ok</button>
+	</ion-footer-bar>
+
+
+</ion-modal-view>
