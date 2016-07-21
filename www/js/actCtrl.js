@@ -49,6 +49,9 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 		for(i=0; i<7; i++){
 			$scope.modalDays[i].checked=false;
 		}
+		for(i=0; i<$scope.catData.length; i++){
+			$scope.catData[i].checked=false;
+		}
 		console.log($scope.catData);
 		
 	}
@@ -260,9 +263,10 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 
     $scope.movePage = function(n) {
       allInfo.details = n.data;
-      $state.go('app.activityInfo');
+      $state.go('app.signUp');
 
     };
 
 
 })
+

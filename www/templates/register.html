@@ -1,23 +1,21 @@
 <ion-view view-title="Maryhill Activity Directory">
  	<ion-header-bar align-title="left" class='has-header'>
-		<h2 class="title">Log In</h2>
+		<h2 class="title">Sign Up</h2>
 	</ion-header-bar>
 	
 	<ion-content class="has-sub">
 		<form name="form" ng-submit="login()" role="form">
 			<div class="padding">
-				<p>If you run an activity please use the log in below to view and make changes to any activities.</p>
+				<p>If you want to follow evetns and get up to date notifications please sign up below for a user account.</p>
 				<label class="item item-input">
 					<input type="text" name="username" placeholder="Username" ng-model="user.name">
 				</label>
 				<label class="item item-input">
 					<input type="password" name="password" placeholder="Password" ng-model="user.pass">
 				</label>
-				<button class="button button-block button-positive" ng-click="login()">Log In</button>
-				<button class="button button-block button-calm" ui-sref="app.signUp">Register</button>
+
+				<button class="button button-block button-positive" ng-click="signUp()">Sign Up</button>
 			</div>
 		</form>
 	</ion-content>
 </ion-view>
-
-

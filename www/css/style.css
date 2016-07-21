@@ -47,6 +47,10 @@
    top: 180px;
 }
 
+.has-sub {
+   top: 100px;
+}
+
 .odd {
   background-color: #f2f2f2;
 }
@@ -97,9 +101,7 @@
 
 #filterMainModal .bar-footer{
      height: 50px; 
-
 }
-
 
 #dayModal{
      width: 90%; 
@@ -110,7 +112,7 @@
 }
 
 #dayModal .bar-footer{
-     height: 50px; 
+     height: 55px; 
 }
 
 .footButton1{

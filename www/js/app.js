@@ -76,7 +76,8 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router'])
    url: "/login",
    views: {
      'menuContent': {
-       templateUrl: "templates/login.html"
+       templateUrl: "templates/login.html",
+       controller: 'LoginCtrl'
 
      }
    }
@@ -89,9 +90,30 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router'])
 
       }
     }
-    
   })
 
+  .state('app.signUp', {
+    url: "/signup",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/register.html",
+        controller: 'SignUpCtrl'
+
+      }
+    }
+  })
+
+  .state('inside', {
+    url: "/mymaduser",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/myMadUser.html",
+        controller: 'userCtrl'
+
+      }
+    }
+  })
+ 
  // If none of the above states are matched, use this as the fallback:
  $urlRouterProvider.otherwise('/app/activities');
 })
