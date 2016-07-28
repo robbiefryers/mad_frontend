@@ -1,34 +1,14 @@
-/* Empty. Add your own CSS if you like */
-
-.activityBody {
-	font-size: 12px;
-}
-#search {
-	width: 100%;
-}
+/* Styles that apply to the entire application*/
 
 
-.filterRow {
-	background-color:#f2f2f2;
-}
-
-#filterBar {
-	margin-top: 2px;
-}
-
-#filterButton {
-	margin-top: 2px;
-	width:47px;
-	height: 47px;
-	font-size: 30px;
-	background-color: #d9d9d9;
-}
+/*Navbar height*/
 .myNav{
-  height: 60px;
+  height: 50px;
 }
 
-.myNav .title {
-   line-height: 60px;
+.bar {
+	border: 0px;
+	background-image: none !important;
 }
 
 .sideNav {
@@ -39,16 +19,14 @@
    line-height: 60px;
 }
 
+/*Make sure content starts below Navbar height*/
 .has-header {
    top: 60px;
 }
 
+/*Sub header height is 43px, add this to main header height if content has a subheader*/
 .has-subheader {
-   top: 180px;
-}
-
-.has-sub {
-   top: 100px;
+   top: 103px;
 }
 
 .odd {
@@ -56,41 +34,6 @@
 }
 
 
-.rowHead {
-	background-color: white;
-	padding: 16px;
-
-}
-
-#actLink {
-	text-decoration: none;
-	color: black;
-}
-.rowItem {
-	border-left: none;
-	border-right: none;
-	font-size: 12px;
-} 
-
-.rowItem p {
-	color: black;
-	font-size: 12px;
-} 
-
-#filterHeader {
-	height: 70px;
-	padding: 0px;
-	top:60px;
-
-}
-
-#filterSubheader{
-
-	height: 50px;
-	padding: 0px;
-	top:130px;
-
-}
 #filterMainModal {
      width: 90%; 
      height: 70%; 
@@ -253,4 +196,10 @@ color: black;
 .time_picker_arrows {
   width: 100%;
 }
+
+
+
+
+
+
 

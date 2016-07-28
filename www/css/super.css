@@ -1,0 +1,111 @@
+/*--------------- All Tabs ---------------*/
+.tabs-fullwidth .tab-item { 
+	max-width: 100%; 
+}
+
+
+/*--------------- Modify Tab ---------------*/
+.infoHeader {
+	height: 30px;
+	padding: 0px;
+	top:50px;
+	border-bottom: 0px;
+	color: white;
+	background-color: #054063;
+}
+
+.searchHeader {
+	height: 70px;
+	padding: 0px;
+	top:80px;
+	background-color: #054063;
+}
+
+.modifyContent {
+	top:150px;
+}
+
+
+
+/*--------------- New Event Tab ---------------*/
+
+.newEvent {
+	font-size:35px;
+	color:#054063;
+}
+.newEventLabel {
+	height:55px;
+}
+.newEventTitle {
+	font-size:20px;
+	color:#054063;
+	padding-top: 10px;
+}
+
+.newTimePicker {
+  border: 1px solid #dddddd;
+  font-size: 16px;
+  height: 40px;
+  line-height: 35px;
+}
+
+.newTimeWrap {
+	padding-top: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.newTimeWrapArrow {
+	padding-left: 0px;
+	padding-right: 1px;
+}
+
+.newEventDayRow {
+	border-bottom: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	margin-left: 9px;
+	margin-right: 10px;
+	margin-top: 3px !important;
+	width: calc(100% - 18px);
+	padding-left: 0px;
+}
+
+.firstDay {
+	border-top: 1px solid #dddddd;
+}
+
+.innerRow {
+	padding: 0px;
+}
+
+.newEventCol {
+	padding: 0px;
+	margin: 0px;
+	margin-top: 12px;
+}
+
+.newCheckbox {
+border: none;
+margin-left: 0px;
+margin-top: 0px;
+}
+
+.newCheckbox div {
+
+	padding-left: 0px;
+}
+
+.ion-asterisk {
+	color: red;
+	margin-right: 15px;
+}
+
+.catOptions {
+	color: #D1D1D1;
+	font-size: 14px;
+}
+
+.confirmNewButton {
+	margin-top: 15px;
+}

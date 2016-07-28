@@ -8,13 +8,14 @@
 			<div class="padding">
 				<p>If you run an activity please use the log in below to view and make changes to any activities.</p>
 				<label class="item item-input">
-					<input type="text" name="username" placeholder="Username" ng-model="user.name">
+					<input type="text" name="username" placeholder="Username" ng-model="user.username">
 				</label>
 				<label class="item item-input">
-					<input type="password" name="password" placeholder="Password" ng-model="user.pass">
+					<input type="password" name="password" placeholder="Password" ng-model="user.password">
 				</label>
-				<button class="button button-block button-positive" ng-click="login()">Log In</button>
+				<button class="button button-block button-positive" ng-click="logIn()">Log In</button>
 				<button class="button button-block button-calm" ui-sref="app.signUp">Register</button>
+				<button class="button button-block button-calm" ng-click="logOut()">Test</button>
 			</div>
 		</form>
 	</ion-content>

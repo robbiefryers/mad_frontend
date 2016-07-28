@@ -8,7 +8,12 @@
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
 
+    <!-- your app's css -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/activities.css" rel="stylesheet">
+    <link href="css/super.css" rel="stylesheet">
+    <link href="css/superEdit.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -16,11 +21,18 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <!-- Controllers js -->
     <script src="js/controllers.js"></script>
+    <script src="js/bodyCtrl.js"></script>
     <script src="js/actCtrl.js"></script>
     <script src="js/infoCtrl.js"></script>
     <script src="js/loginCtrl.js"></script>
     <script src="js/signupCtrl.js"></script>
+    <script src="js/superCtrl.js"></script>
+    <script src="js/bodyCtrl.js"></script>
+    <script src="js/supereditCtrl.js"></script>
+    <!-- Services js -->
+    <script src="js/services.js"></script>
 
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -59,7 +71,7 @@
     	</ion-side-menu-content>
 
     	<!-- Left Side Menu -->
-    	<ion-side-menu side="left" width="200">
+    	<ion-side-menu side="left" width="200" ng-controller="bodyCtrl">
     		<ion-header-bar class="bar-positive sideNav">
     				<h1 class="title">M.A.D.</h1>
     		</ion-header-bar>
@@ -72,13 +84,18 @@
     					<ion-item menu-close href="#/app/browse">
       						Community
     					</ion-item>
-
-    					<ion-item menu-close href="#/app/login">
+                        <ion-item ng-click="test()" ng-if="In==true" menu-close href="#/app/login">
+                            Members
+                        </ion-item>
+    					<ion-item ng-click="test()" ng-if="In==false" menu-close href="#/app/login">
       						Log In
     					</ion-item>
     					<ion-item menu-close href="#/app/contact">
       						Contact
     					</ion-item>
+                        <ion-item menu-close href="#/app/super">
+                             Super test
+                        </ion-item>
     				</ion-list>
     		</ion-content>
     	</ion-side-menu>

@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<ion-content class="activityBody has-subheader">
+	<ion-content class="activityBody">
 
 
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
@@ -41,7 +41,6 @@
 					{{t.startTime | limitTo:5:0}}-{{t.endTime | limitTo:5:0}}</p></div>
 					<div class="col col-20" ng-if="item.agesUpper==99">{{item.agesLower}} +</div>
 					<div class="col col-20" ng-if="item.agesUpper!=99">{{item.agesLower}}-{{item.agesUpper}}</div>
-
 				</a>
 
 			</ion-item>

@@ -263,7 +263,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 
     $scope.movePage = function(n) {
       allInfo.details = n.data;
-      $state.go('app.signUp');
+      $state.go('app.activityInfo');
 
     };
 

@@ -1,0 +1,59 @@
+.activityBody {
+	font-size: 12px;
+	top: 170px;
+}
+
+#filterHeader {
+	height: 70px;
+	padding: 0px;
+	top:50px;
+
+
+}
+
+#filterSubheader{
+	height: 50px;
+	padding: 0px;
+	top:120px;
+
+
+}
+
+.filterRow {
+	background-color: #054063;
+}
+
+#filterBar {
+	margin-top: 2px;
+}
+
+#filterButton {
+	margin-top: 2px;
+	width:47px;
+	height: 47px;
+	font-size: 36px;
+	color: white;
+}
+
+
+
+.rowHead {
+	background-color: white;
+	padding: 16px;
+
+}
+
+#actLink {
+	text-decoration: none;
+	color: black;
+}
+.rowItem {
+	border-left: none;
+	border-right: none;
+	font-size: 12px;
+} 
+
+.rowItem p {
+	color: black;
+	font-size: 12px;
+} 

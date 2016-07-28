@@ -1,0 +1,89 @@
+<ion-view view-title="Maryhill Activity Directory">
+
+	<ion-content>
+		<div class="padding">
+		Tap on the fields to edit any information and confirm the changes at the bottom.
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Activity</span>
+					<input type="text" ng-model="sharedInfo.name">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Address</span>
+					<input type="text" ng-model="sharedInfo.venue">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Postcode</span>
+					<input type="text" ng-model="sharedInfo.postcode">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Contact Name</span>
+					<input type="text" ng-model="sharedInfo.contactName">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Contact Number</span>
+					<input type="tel" ng-model="sharedInfo.number">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Contact Email</span>
+					<input type="text" ng-model="sharedInfo.contactEmail">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Special Further Info</span>
+					<input type="text" ng-model="sharedInfo.special">
+				</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-100 agesEditRow">
+				<div class="row agesEditTitle">
+					Ages From / Ages To
+				</div>
+				<div class="row">
+					<div class="col col-50">
+						<input type="tel" class="agesEdit" ng-model="sharedInfo.agesLower">
+					</div>
+					<div class="col col-50">
+						<input type="tel" class="agesEdit" ng-model="sharedInfo.agesUpper">
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+
+		<div class="padding confirmNewButton">
+			<button class="button button-block button-positive">Update Activity</button>
+		</div>	
+
+	</ion-content>
+
+
+</ion-view>

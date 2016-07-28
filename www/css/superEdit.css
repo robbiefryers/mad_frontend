@@ -1,0 +1,20 @@
+.agesEditRow {
+	border: solid 1px #DDDDDD;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 4px;
+}
+
+.agesEdit {
+	margin: 0 auto;
+	width: 70%;
+	text-align: center;
+	border: 1px solid #DDDDDD !important;
+}
+
+.agesEditTitle {
+	color: #444444;
+	font-size: 16px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}

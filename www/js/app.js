@@ -1,16 +1,25 @@
 
-angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router'])
+angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices'])
 
 .constant('ApiEndpoint',{
   url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/'
 })
 
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated'
+})
+
 .config(function($ionicConfigProvider) {
-    $ionicConfigProvider.views.transition('none');
+
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
 
 })
+
+.config(['$httpProvider', function ($httpProvider) {
+  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+}])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -103,16 +112,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router'])
     }
   })
 
-  .state('inside', {
-    url: "/mymaduser",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/myMadUser.html",
-        controller: 'userCtrl'
 
-      }
-    }
-  })
  
  // If none of the above states are matched, use this as the fallback:
  $urlRouterProvider.otherwise('/app/activities');
