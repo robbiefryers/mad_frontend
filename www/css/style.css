@@ -2,26 +2,18 @@
 
 
 /*Navbar height*/
-.myNav{
-  height: 50px;
-}
+
 
 .bar {
 	border: 0px;
 	background-image: none !important;
 }
 
-.sideNav {
-	height: 60px;
-}
 
-.sideNav .title {
-   line-height: 60px;
-}
 
 /*Make sure content starts below Navbar height*/
 .has-header {
-   top: 60px;
+   top: 44px;
 }
 
 /*Sub header height is 43px, add this to main header height if content has a subheader*/

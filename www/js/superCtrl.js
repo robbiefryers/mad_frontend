@@ -2,16 +2,8 @@ var module = angular.module('maryhillControllers');
 
 module.controller('superCtrl',function($scope, $state, allInfo, $http, ApiEndpoint){
 
-		$scope.dayTimes = [
-		{day: "Monday", checked: false},
-		{day: "Tuesday", checked: false},
-		{day: "Wednesday", checked: false},
-		{day: "Thursday", checked: false},
-		{day: "Friday", checked: false},
-		{day: "Saturday", checked: false},
-		{day: "Sunday", checked: false},
-	];
-/*
+
+
 	 $http({
       method: 'GET',
       url: ApiEndpoint.url + 'activities'
@@ -24,9 +16,17 @@ module.controller('superCtrl',function($scope, $state, allInfo, $http, ApiEndpoi
 
     $scope.editPage = function(item) {
       allInfo.edit = item.data;
-      $state.go('app.super.superEdit');
-      console.log($ionicHistory.viewHistory());
+      $state.go('app.super.edit');
 
-    } */
+    } 
+
+    console.log("modify stae entered");
+
+    $scope.update = function() {
+      $state.go('app.super');
+
+    }
+  
+
 
 })

@@ -47,61 +47,7 @@
 
     </ion-nav-view>
 
-    <!--Load up the side menu code into the index so it is present across the app-->
-    <script id="templates/menu.html" type="text/ng-template">
 
-    <ion-side-menus>
-    	<!-- Main Content -->
-    	<ion-side-menu-content>
-    		<ion-nav-bar class="bar-positive myNav">
-
-    				<ion-nav-back-button>
-    				</ion-nav-back-button>
-
-    				<ion-nav-buttons side="left">
-    					<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-    				</ion-nav-buttons>
-
-    		</ion-nav-bar>
-
-    		<ion-nav-view name="menuContent">
-
-    		</ion-nav-view>
-
-    	</ion-side-menu-content>
-
-    	<!-- Left Side Menu -->
-    	<ion-side-menu side="left" width="200" ng-controller="bodyCtrl">
-    		<ion-header-bar class="bar-positive sideNav">
-    				<h1 class="title">M.A.D.</h1>
-    		</ion-header-bar>
-
-    		<ion-content>
-    				<ion-list>
-    					<ion-item menu-close href="#/app/activities">
-      						Activities
-    					</ion-item>
-    					<ion-item menu-close href="#/app/browse">
-      						Community
-    					</ion-item>
-                        <ion-item ng-click="test()" ng-if="In==true" menu-close href="#/app/login">
-                            Members
-                        </ion-item>
-    					<ion-item ng-click="test()" ng-if="In==false" menu-close href="#/app/login">
-      						Log In
-    					</ion-item>
-    					<ion-item menu-close href="#/app/contact">
-      						Contact
-    					</ion-item>
-                        <ion-item menu-close href="#/app/super">
-                             Super test
-                        </ion-item>
-    				</ion-list>
-    		</ion-content>
-    	</ion-side-menu>
-
-    </ion-side-menus>
-    </script>
 
   </body>
 </html>

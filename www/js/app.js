@@ -10,7 +10,6 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 })
 
 .config(function($ionicConfigProvider) {
-
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
 
@@ -53,10 +52,11 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+//default state for the app, load in the home template which contains the sidebar and header
   .state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: "templates/home.html",
     
   })
 
@@ -111,6 +111,64 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
       }
     }
   })
+
+  .state('app.super', {
+    url: "/super",
+
+    views: {
+      'menuContent': {
+        templateUrl: "templates/super.html"
+      }
+    }
+  })
+
+  .state('app.super.modify', {
+    url: '/modify',
+    views: {
+      'modify': {
+        templateUrl: 'templates/super/modify.html',
+        controller: 'superCtrl'
+      }
+    }
+  })
+
+  .state('app.super.edit', {
+    url: '/edit',
+    views: {
+     'modify': {
+       templateUrl: "templates/super/editEvent.html",
+       controller: 'superEditCtrl'
+     }
+    }
+  })
+
+  .state('app.super.newEvent', {
+    url: '/newEvent',
+    views: {
+      'newEvent': {
+        templateUrl: 'templates/super/newEvent.html'
+      }
+    }
+  })
+
+  .state('app.super.newAdmin', {
+    url: '/newAdmin',
+    views: {
+      'newAdmin': {
+        templateUrl: 'templates/super/newAdmin.html'
+      }
+    }
+  })
+
+  .state('app.super.stats', {
+    url: '/stats',
+    views: {
+      'stats': {
+        templateUrl: 'templates/super/stats.html'
+      }
+    }
+  })
+
 
 
  

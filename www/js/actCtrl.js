@@ -1,8 +1,9 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
+module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo, $ionicHistory) {
 
-
+ console.log("This is activity history print is ");
+ console.log($ionicHistory);
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
 		{day: "Tuesday", checked: false},

@@ -3,12 +3,15 @@
 	max-width: 100%; 
 }
 
+.tabs {
+	bottom: 0px ;
+}
 
 /*--------------- Modify Tab ---------------*/
 .infoHeader {
 	height: 30px;
 	padding: 0px;
-	top:50px;
+	top:44px;
 	border-bottom: 0px;
 	color: white;
 	background-color: #054063;
@@ -17,12 +20,12 @@
 .searchHeader {
 	height: 70px;
 	padding: 0px;
-	top:80px;
+	top:74px;
 	background-color: #054063;
 }
 
 .modifyContent {
-	top:150px;
+	top:144px;
 }
 
 

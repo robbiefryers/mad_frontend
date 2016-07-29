@@ -1,0 +1,148 @@
+<ion-view view-title="Create a New Event">
+	<ion-content class="has-sub">
+		<div class="row">
+			<div class="col col-20 text-center"><i class="icon ion-paintbrush newEvent"></i></div>
+			<div class="col col-20 text-center"><i class="icon ion-coffee newEvent"></i></div>
+			<div class="col col-20 text-center"><i class="icon ion-ios-football newEvent"></i></div>
+			<div class="col col-20 text-center"><i class="icon ion-music-note newEvent"></i></div>
+			<div class="col col-20 text-center"><i class="icon ion-ios-book newEvent"></i></div>
+		</div>
+		<div class="row">
+			<div class="col col-100 newEventTitle">Create New Event</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="name" placeholder="Name">
+					<i class="icon ion-asterisk placeholder-icon"></i>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="address" placeholder="Address">
+					<i class="icon ion-asterisk placeholder-icon"></i>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="contactName" placeholder="Contact Name">
+				</label>
+			</div>
+		</div>				
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="contactNumber" placeholder="Contact Phone">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="special" placeholder="Special Info Eg. Women only, meet fornightly etc.">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="special" placeholder="Activity Admin (enter their username)">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 1
+					</div>
+						<select>
+							<option value="">Select Option</option>
+							<option>Blue</option>
+							<option>Green</option>
+							<option>Red</option>
+						</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 2
+					</div>
+						<select>
+							<option value="">Select Option</option>
+							<option>Blue</option>
+							<option>Green</option>
+							<option>Red</option>
+						</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 3
+					</div>
+						<select>
+							<option value="">Select Option</option>
+							<option>Blue</option>
+							<option>Green</option>
+							<option>Red</option>
+						</select>
+				</label>
+			</div>
+		</div>
+
+		<div class="row newEventDayRow" ng-repeat="item in dayTimes" ng-class="{firstDay:$first}">
+			<div class="col col-30 newEventCol">
+				<ion-checkbox class="newCheckbox">{{item.day | limitTo:3:0}}</ion-checkbox>
+			</div>
+			<div class="col col-35 newEventCol">
+				<div class="row innerRow">
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+							<i class="icon ion-chevron-left"></i>
+							</button>
+					</div>
+					<div class="col col-60 newTimeWrap">
+						<div class="newTimePicker text-center">08:00</div>
+					</div>
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+							<i class="icon ion-chevron-right"></i>
+							</button>
+					</div>
+				</div>
+			</div>
+			<div class="col col-35 newEventCol">
+				<div class="row innerRow">
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+							<i class="icon ion-chevron-left"></i>
+							</button>
+					</div>
+					<div class="col col-60 newTimeWrap">
+						<div class="newTimePicker text-center">24:00</div>
+					</div>
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+							<i class="icon ion-chevron-right"></i>
+							</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="padding confirmNewButton">
+		<button class="button button-block button-positive">Create Activity</button>
+		</div>				
+	</ion-content>
+
+</ion-view>

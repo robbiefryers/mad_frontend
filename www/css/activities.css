@@ -1,22 +1,19 @@
 .activityBody {
 	font-size: 12px;
-	top: 170px;
+	top: 154px;
 }
 
 #filterHeader {
 	height: 70px;
 	padding: 0px;
-	top:50px;
-
-
+	top:44px;
 }
 
 #filterSubheader{
-	height: 50px;
+	height: 40px;
+	background-color: red;
 	padding: 0px;
-	top:120px;
-
-
+	top:114px;
 }
 
 .filterRow {
@@ -39,8 +36,8 @@
 
 .rowHead {
 	background-color: white;
-	padding: 16px;
-
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
 #actLink {
