@@ -193,7 +193,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 
 
   // Modal 1
-    $ionicModal.fromTemplateUrl('templates/filterMainModal.html', function(modal) {
+    $ionicModal.fromTemplateUrl('templates/activities/filterMainModal.html', function(modal) {
       $scope.oModal1 = modal;
       }, {
         id: '1',
@@ -203,7 +203,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
       });
 
     // Modal 2
-    $ionicModal.fromTemplateUrl('templates/dayModal.html', function(modal) {
+    $ionicModal.fromTemplateUrl('templates/activities/dayModal.html', function(modal) {
       $scope.oModal2 = modal;
       }, {
         id: '2',
@@ -213,7 +213,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
       });
 
     // Modal 3
-    $ionicModal.fromTemplateUrl('templates/categoryModal.html', function(modal) {
+    $ionicModal.fromTemplateUrl('templates/activities/categoryModal.html', function(modal) {
       $scope.oModal3 = modal;
       }, {
         id: '3',

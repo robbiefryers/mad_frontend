@@ -1,15 +1,9 @@
 /* Styles that apply to the entire application*/
 
-
-/*Navbar height*/
-
-
 .bar {
 	border: 0px;
 	background-image: none !important;
 }
-
-
 
 /*Make sure content starts below Navbar height*/
 .has-header {
@@ -18,7 +12,7 @@
 
 /*Sub header height is 43px, add this to main header height if content has a subheader*/
 .has-subheader {
-   top: 103px;
+   top: 86px;
 }
 
 .odd {
@@ -187,6 +181,10 @@ color: black;
 
 .time_picker_arrows {
   width: 100%;
+}
+
+.supportCard {
+	margin-top: 0px;
 }
 
 

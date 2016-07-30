@@ -1,5 +1,5 @@
 
-angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices'])
+angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices', 'maryhillConstants', 'ionic-native-transitions'])
 
 .constant('ApiEndpoint',{
   url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/'
@@ -12,6 +12,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
+    $ionicConfigProvider.views.transition('none');
 
 })
 
@@ -22,6 +23,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -49,7 +51,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
   $stateProvider
 
 //default state for the app, load in the home template which contains the sidebar and header
@@ -64,7 +66,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
     url: "/activities",
     views: {
       'menuContent': {
-        templateUrl: "templates/activities.html",
+        templateUrl: "templates/activities/activities.html",
         controller: 'ActivityCtrl'
       }
     }
@@ -75,8 +77,17 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
    url: "/activityInfo",
    views: {
      'menuContent': {
-       templateUrl: "templates/activityInfo.html",
+       templateUrl: "templates/activities/activityInfo.html",
        controller: 'infoCtrl'
+     }
+   }
+ })
+
+  .state('app.support', {
+   url: "/support",
+   views: {
+     'menuContent': {
+       templateUrl: "templates/support.html"
      }
    }
  })
@@ -114,11 +125,13 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
   .state('app.super', {
     url: "/super",
-
     views: {
       'menuContent': {
-        templateUrl: "templates/super.html"
+        templateUrl: "templates/super/super.html"
       }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.super]
     }
   })
 
@@ -170,14 +183,43 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
   })
 
 
+  .state('app.admin', {
+    url: "/admin",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/admin/admin.html"
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.admin]
+    }
+  })
 
+  .state('app.admin.modify', {
+    url: '/modify',
+    views: {
+      'modify': {
+        templateUrl: 'templates/admin/modify.html'
+      }
+    }
+  })
  
  // If none of the above states are matched, use this as the fallback:
  $urlRouterProvider.otherwise('/app/activities');
 })
 
 
-
-
-
-
+.run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
+  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+ 
+    if ('data' in next && 'authorizedRoles' in next.data) {
+      var authorizedRoles = next.data.authorizedRoles;
+      if (!AuthService.isAuthorized(authorizedRoles)) {
+        event.preventDefault();
+        $state.go($state.current, {}, {reload: true});
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      }
+    }
+ 
+  });
+})
