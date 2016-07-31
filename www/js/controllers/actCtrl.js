@@ -1,9 +1,8 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo, $ionicHistory) {
+module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
 
- console.log("This is activity history print is ");
- console.log($ionicHistory);
+
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
 		{day: "Tuesday", checked: false},
@@ -52,9 +51,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 		}
 		for(i=0; i<$scope.catData.length; i++){
 			$scope.catData[i].checked=false;
-		}
-		console.log($scope.catData);
-		
+		}	
 	}
 
 	$scope.increaseStartTime = function() {

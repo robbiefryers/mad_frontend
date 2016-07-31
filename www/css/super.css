@@ -6,6 +6,9 @@
 .tabs {
 	bottom: 0px ;
 }
+.logoutButton {
+	border:none;
+}
 
 /*--------------- Modify Tab ---------------*/
 .infoHeader {

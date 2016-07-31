@@ -1,0 +1,22 @@
+<ion-view view-title="Maryhill Activity Directory">
+ 	<ion-header-bar align-title="left" class='has-header'>
+		<h2 class="title">Settings</h2>
+	</ion-header-bar>
+
+	<ion-content class="has-subheader">
+
+
+		<div class="item range range-positive">
+			<i class="icon ion-volume-low"></i>
+			<input type="range" name="volume">
+			<i class="icon ion-volume-high"></i>
+		</div>
+		<div class="item range range-energized">
+			<span class="smallA">A</span>
+			<input id="range" type="range" min="10" max="20" ng-model="fontSize" ng-change="changeFontSize(fontSize)">
+			<span class="bigA">A</span>
+		</div>
+	</ion-content>
+</ion-view>
+
+

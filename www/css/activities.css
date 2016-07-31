@@ -16,13 +16,26 @@
 	top:114px;
 }
 
-.filterRow {
+#filterRow {
 	background-color: #054063;
 }
 
 #filterBar {
 	margin-top: 2px;
 }
+
+.platform-ios .activityBody {
+	top: 174px !important;
+}
+
+.platform-ios #filterHeader {
+	top: 64px !important;
+}
+
+.platform-ios #filterSubheader {
+	top: 134px !important;
+}
+
 
 #filterButton {
 	margin-top: 2px;

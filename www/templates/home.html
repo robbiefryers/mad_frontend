@@ -20,7 +20,7 @@
 	</ion-side-menu-content>
 
 	<!-- Left Side Menu -->
-	<ion-side-menu side="left" width="200" ng-controller="bodyCtrl">
+	<ion-side-menu side="left" width="200">
 		<ion-header-bar class="bar-positive sideNav">
 				<h1 class="title">M.A.D.</h1>
 		</ion-header-bar>
@@ -30,22 +30,24 @@
 					<ion-item menu-close href="#/app/activities">
   						Activities
 					</ion-item>
-					<ion-item menu-close href="#/app/support">
-  						Support
-					</ion-item>
-					<ion-item menu-close href="#/app/login">
+					<ion-item ng-if="state=='out'" menu-close href="#/app/login">
   						Log In
 					</ion-item>
+                    <ion-item ng-if="state=='super'" menu-close href="#/app/super/modify">
+                         Super Admin
+                    </ion-item>
+                     <ion-item ng-if="state=='admin'" menu-close href="#/app/admin">
+                         Regular Admin
+                    </ion-item>  					
+					<ion-item menu-close href="#/app/support">
+  						Support
+					</ion-item>                 
 					<ion-item menu-close href="#/app/contact">
   						Contact
 					</ion-item>
-                    <ion-item menu-close href="#/app/super/modify">
-                         Super Admin
-                    </ion-item>
-                     <ion-item menu-close href="#/app/admin/modify">
-                         Regular Admin
-                    </ion-item>                   
-                    
+					<ion-item menu-close href="#/app/settings">
+  						Settings
+					</ion-item>                     
 				</ion-list>
 		</ion-content>
 	</ion-side-menu>

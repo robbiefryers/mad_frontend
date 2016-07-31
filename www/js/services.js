@@ -24,7 +24,7 @@ angular.module('maryhillServices', [])
 		if(userG =='SuperAdmin'){
 			role = USER_ROLES.super;
 		}
-		if(userG =='Admin'){
+		if(userG =='ActivityAdministrators'){
 			role = USER_ROLES.admin;
 		}
 				if(userG =='User'){
@@ -40,6 +40,7 @@ angular.module('maryhillServices', [])
 		isAuthenticated = false;
 		$http.defaults.headers.common.Authorization = undefined;
 		window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+		role ='';
 		//console.log(isAuthenticated);
 	}
 
@@ -72,16 +73,15 @@ angular.module('maryhillServices', [])
 				data: user,
 				headers: {'Content-Type': 'application/json'}
 
-			}).then(function(result) {
-
-				if (result.data.success) {
-					storeUserCredentials(result.data.token, result.data.userGroup);
+			}).then(function successCallback(response) {
+				if (response.data.success) {
+					storeUserCredentials(response.data.token, response.data.userGroup);
 					resolve(role);
-					console.log("success");
-				} else {
-					console.log("failed");
-					reject('log in failed');
-				}
+				} 
+
+			}, function errorCallback(response) {
+				console.log("faile");
+				reject(role);
 			});
 		});
 	};
@@ -110,15 +110,7 @@ angular.module('maryhillServices', [])
 })
 
 .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
-  return {
-    responseError: function (response) {
-      $rootScope.$broadcast({
-        401: AUTH_EVENTS.notAuthenticated,
-        403: AUTH_EVENTS.notAuthorized
-      }[response.status], response);
-      return $q.reject(response);
-    }
-  };
+	return true;
 })
 
 .config(function ($httpProvider) {

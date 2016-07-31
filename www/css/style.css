@@ -5,6 +5,9 @@
 	background-image: none !important;
 }
 
+/*Due to different rendering, set up custom rules for iOS devices*/
+
+
 /*Make sure content starts below Navbar height*/
 .has-header {
    top: 44px;
@@ -186,10 +189,4 @@ color: black;
 .supportCard {
 	margin-top: 0px;
 }
-
-
-
-
-
-
 

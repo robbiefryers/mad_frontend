@@ -98,7 +98,6 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
      'menuContent': {
        templateUrl: "templates/login.html",
        controller: 'LoginCtrl'
-
      }
    }
  })
@@ -125,6 +124,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
   .state('app.super', {
     url: "/super",
+    abstract: true,
     views: {
       'menuContent': {
         templateUrl: "templates/super/super.html"
@@ -132,7 +132,8 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
     },
     data: {
       authorizedRoles: [USER_ROLES.super]
-    }
+    },
+    cache: false
   })
 
   .state('app.super.modify', {
@@ -192,14 +193,26 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
     },
     data: {
       authorizedRoles: [USER_ROLES.admin]
-    }
+    },
+    cache: false
   })
 
   .state('app.admin.modify', {
     url: '/modify',
     views: {
-      'modify': {
-        templateUrl: 'templates/admin/modify.html'
+      'modifyAdmin': {
+        templateUrl: 'templates/admin/modify.html',
+        controller: 'adminCtrl'
+      }
+    }
+  })
+
+  .state('app.settings', {
+    url: '/settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingCtrl'
       }
     }
   })
@@ -211,13 +224,14 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
 .run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
- 
+ console.log("state change check");
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
       if (!AuthService.isAuthorized(authorizedRoles)) {
         event.preventDefault();
         $state.go($state.current, {}, {reload: true});
-        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized)
+
       }
     }
  

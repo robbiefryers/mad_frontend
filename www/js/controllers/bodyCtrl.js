@@ -2,12 +2,12 @@ var module = angular.module('maryhillControllers');
 
 module.controller('bodyCtrl',function($scope, $state, AuthService, AUTH_EVENTS, $ionicPopup){
 
-  $scope.super = true;
+  $scope.state = "out";
 
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
     var alertPopup = $ionicPopup.alert({
       title: 'Unauthorized!',
-      template: 'You are not allowed to access this resource.'
+      template: 'You are not allowed to access this resources.'
     });
   });
  
@@ -19,6 +19,10 @@ module.controller('bodyCtrl',function($scope, $state, AuthService, AUTH_EVENTS, 
       template: 'Sorry, You have to login again.'
     });
   });
+
+   $scope.setStatus = function(s) {
+    $scope.state = s;
+  };
 
 })
 
