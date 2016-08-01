@@ -6,16 +6,24 @@
 	<ion-content class="has-subheader">
 
 
-		<div class="item range range-positive">
-			<i class="icon ion-volume-low"></i>
-			<input type="range" name="volume">
-			<i class="icon ion-volume-high"></i>
-		</div>
+
+	  <li class="item item-toggle">
+	     Show tutorial on start up
+	     <label class="toggle toggle-assertive">
+	       <input type="checkbox">
+	       <div class="track">
+	         <div class="handle"></div>
+	       </div>
+	     </label>
+	  </li>
+	
 		<div class="item range range-energized">
 			<span class="smallA">A</span>
-			<input id="range" type="range" min="10" max="20" ng-model="fontSize" ng-change="changeFontSize(fontSize)">
+			<input id="range" type="range" min="12" max="24" ng-model="fontSize" ng-change="changeFontSize(fontSize)">
 			<span class="bigA">A</span>
 		</div>
+
+		Current font size is: {{fontSize}}
 	</ion-content>
 </ion-view>
 

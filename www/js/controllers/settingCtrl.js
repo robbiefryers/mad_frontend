@@ -1,11 +1,15 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $state) {
+module.controller('settingCtrl', function($scope, $state, settingsService) {
 
-  $scope.fontSize = 10;
-  $scope.changeFontSize = function (fontSize) {
-    angular.element(document.querySelectorAll('*')).css('font-size', fontSize + 'px');
-  }
+	console.log(settingsService.getFont());
 
-}
+	$scope.fontSize = settingsService.getFont();
+
+  $scope.changeFontSize = function (size) {
+    
+    settingsService.setFont(size);
+  };
+
+});
 

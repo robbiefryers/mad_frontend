@@ -1,0 +1,33 @@
+.tutorialContent {
+  top: 0;
+  bottom: 110px;
+}
+.slider {
+  height: 100%;
+}
+.slider-slide {
+  top: 60px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+
+}
+
+#logo {
+  margin: 30px 0px;
+}
+
+
+.tutImg {
+  width: 100%;
+  max-width: 400px;
+}
+
+.button.ng-hide{
+  display:none;
+}
+
+.infoText {
+  text-align: justify;
+
+}

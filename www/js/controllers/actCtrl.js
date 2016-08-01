@@ -2,7 +2,6 @@ var module = angular.module('maryhillControllers');
 
 module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
 
-
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
 		{day: "Tuesday", checked: false},

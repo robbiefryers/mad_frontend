@@ -190,3 +190,16 @@ color: black;
 	margin-top: 0px;
 }
 
+.toggle input:checked + .track {
+    background-color: #054360 !important;
+    border-color:#E5D390;
+}
+
+.smallA {
+	font-size: 12px;
+}
+
+.bigA {
+	font-size: 20px;
+}
+

@@ -1,5 +1,32 @@
 angular.module('maryhillServices', [])
 
+.service('settingsService', function(){
+	var preferedFontSize = 16;
+	var tutorialOn = true;
+
+	function getFontSize() {
+		return window.localStorage.getItem(preferedFontSize);
+	}
+
+	function setFontSize(size) {
+		console.log('size is ' + size);
+		window.localStorage.setItem(preferedFontSize, size);
+		angular.element(document.querySelectorAll('*')).css('font-size', size + 'px');
+		console.log("adjuested");
+
+	}
+
+	setFontSize(window.localStorage.getItem(preferedFontSize));
+
+	return {
+		getFont: getFontSize,
+		setFont: setFontSize,
+		tutorial: tutorialOn,
+	}
+
+
+})
+
 .service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 	var LOCAL_TOKEN_KEY = 'yourTokenKey';
 	var isAuthenticated = false;

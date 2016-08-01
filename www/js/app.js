@@ -20,9 +20,10 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 }])
 
-
+/*called on start up*/
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
 
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -52,9 +53,16 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 })
 
 .config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
-  $stateProvider
 
 //default state for the app, load in the home template which contains the sidebar and header
+$stateProvider
+  .state('intro', {
+    url: "/intro",
+    templateUrl: "templates/intro.html",
+    controller: 'introCtrl'
+    
+  })
+
   .state('app', {
     url: "/app",
     abstract: true,
@@ -218,7 +226,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
   })
  
  // If none of the above states are matched, use this as the fallback:
- $urlRouterProvider.otherwise('/app/activities');
+ $urlRouterProvider.otherwise('/intro');
 })
 
 

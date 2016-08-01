@@ -18,6 +18,7 @@
     <link href="css/activities.css" rel="stylesheet">
     <link href="css/super.css" rel="stylesheet">
     <link href="css/superEdit.css" rel="stylesheet">
+    <link href="css/tutorial.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -35,6 +36,8 @@
     <script src="js/controllers/bodyCtrl.js"></script>
     <script src="js/controllers/supereditCtrl.js"></script>
     <script src="js/controllers/adminCtrl.js"></script>
+    <script src="js/controllers/settingCtrl.js"></script>
+    <script src="js/controllers/introCtrl.js"></script>
     
     <!-- Services & Constants -->
     <script src="js/services.js"></script>
@@ -44,7 +47,10 @@
   </head>
 
   <body ng-app="maryhill" ng-controller="bodyCtrl">
-
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <!--All of the content from the templates is loaded between these tags-->
     <ion-nav-view>
 

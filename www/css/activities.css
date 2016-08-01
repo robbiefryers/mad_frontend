@@ -67,3 +67,7 @@
 	color: black;
 	font-size: 12px;
 } 
+
+.modalHeader {
+	border-bottom: solid 2px #D2D2D2;
+}
