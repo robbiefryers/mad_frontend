@@ -1,30 +1,29 @@
 angular.module('maryhillServices', [])
-
+	
 .service('settingsService', function(){
-	var preferedFontSize = 16;
+
 	var tutorialOn = true;
 
-	function getFontSize() {
-		return window.localStorage.getItem(preferedFontSize);
+	//set up setting variables in local storage on first time app opened
+	if (window.localStorage.getItem(tutorialOn) ==null){
+		window.localStorage.setItem(tutorialOn, true);
 	}
 
-	function setFontSize(size) {
-		console.log('size is ' + size);
-		window.localStorage.setItem(preferedFontSize, size);
-		angular.element(document.querySelectorAll('*')).css('font-size', size + 'px');
-		console.log("adjuested");
-
+	function getTutorialOption() {
+		return window.localStorage.getItem(tutorialOn);
 	}
 
-	setFontSize(window.localStorage.getItem(preferedFontSize));
-
+	function setTutorialOption() {
+		bool = JSON.parse(getTutorialOption());
+		boolChange = !bool;
+		window.localStorage.setItem(tutorialOn, boolChange);
+		return getTutorialOption();
+	}
 	return {
-		getFont: getFontSize,
-		setFont: setFontSize,
+		getTut: getTutorialOption,
+		setTut: setTutorialOption,
 		tutorial: tutorialOn,
 	}
-
-
 })
 
 .service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
@@ -59,7 +58,8 @@ angular.module('maryhillServices', [])
 		}
 
 		//very important line, set token as header for future requests!
-		//$http.defaults.headers.common.Authorization = authToken;
+		$http.defaults.headers.common.Authorization = "Token " + authToken;
+		
 	}
 
 	function destroyUserCredentials() {

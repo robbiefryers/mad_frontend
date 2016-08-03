@@ -18,4 +18,6 @@ module.controller('introCtrl', function($scope, $state, $ionicSlideBoxDelegate) 
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
   };
+
+  $scope.size = 40;
 })

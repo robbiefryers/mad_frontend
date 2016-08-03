@@ -6,7 +6,7 @@
 			</div>
 			
 			<div class="item item-body">
-				<div class="item infoItem">
+				<div class="item infoItem" ng-click="openMaps()">
 					<div class="item-icon-left iconWriting">
 						<i class="icon ion-ios-location iconI"></i>
 							{{sharedInfo.venue}}
@@ -18,7 +18,7 @@
 							{{sharedInfo.contactName}}
 					</div>
 				</div>
-				<div class="item infoItem">
+				<div class="item infoItem" ng-click="makeCall()">
 					<div class="item-icon-left iconWriting">
 						<i class="icon ion-ios-telephone iconI"></i>
 							{{sharedInfo.number}}

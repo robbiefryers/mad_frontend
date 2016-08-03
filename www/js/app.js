@@ -1,9 +1,4 @@
-
-angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices', 'maryhillConstants', 'ionic-native-transitions'])
-
-.constant('ApiEndpoint',{
-  url: 'http://ec2-52-49-221-88.eu-west-1.compute.amazonaws.com:5555/'
-})
+angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices', 'maryhillConstants', 'ionic-native-transitions', 'ngCordova'])
 
 .constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated'
@@ -21,9 +16,8 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 }])
 
 /*called on start up*/
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, settingsService) {
   $ionicPlatform.ready(function() {
-
 
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -52,8 +46,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
-
+.config(function($stateProvider, $urlRouterProvider, USER_ROLES, settingsServiceProvider) {
 //default state for the app, load in the home template which contains the sidebar and header
 $stateProvider
   .state('intro', {
@@ -225,8 +218,18 @@ $stateProvider
     }
   })
  
- // If none of the above states are matched, use this as the fallback:
- $urlRouterProvider.otherwise('/intro');
+ // Default state, if the tutorial option is still checked go to the intro page
+ //problem with local storage in services only allows for string values to be stored
+ //convert the string to boolean with json and then test the condition
+    if (JSON.parse(settingsServiceProvider.$get().getTut())===true){
+      $urlRouterProvider.otherwise('/intro');
+      console.log(JSON.parse(settingsServiceProvider.$get().getTut()));
+    }
+    //otherwise go to the app
+    else {
+      $urlRouterProvider.otherwise('/app/activities');
+      console.log(JSON.parse(settingsServiceProvider.$get().getTut()));
+    }
 })
 
 

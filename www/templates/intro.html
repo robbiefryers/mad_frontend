@@ -10,17 +10,17 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right"> 
-    <button class="button button-light button-clear no-animation" ng-click="next()" ng-show="slideIndex != 2">
+    <button class="button button-light button-clear no-animation" ng-click="next()" ng-show="slideIndex != 3">
       <i class="ion-chevron-right custom-icon"></i>
     </button>
-    <button class="button button-light button-clear no-animation" ng-click="startApp()" ng-show="slideIndex == 2">
+    <button class="button button-light button-clear no-animation" ng-click="startApp()" ng-show="slideIndex == 3">
       Lets Go!
     </button>
   </ion-nav-buttons>
 
 
-
-  <ion-slide-box on-slide-changed="slideChanged(index)" >
+  <!--ng-Style= "{'font-size': size + 'px'}"-->
+  <ion-slide-box class="" on-slide-changed="slideChanged(index)" >
     <ion-slide>
       <h3>Thank you for downloading the Maryhill Activity App!</h3>
       <div id="logo">
@@ -38,27 +38,24 @@
     <ion-slide>
       <h3>Activities</h3>
       <div class="row">
-        <div class="col col-100">
+        <div class="col col-100 infoText">
           Find activities easily. Tap the search bar to bring up the keyboard and search for an activity by name.
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-10"></div>
-        <div class="col col-80">
+        <div class="col col-100">
           <img class="tutImg" src="./img/activityTut.png">
         </div>
-        <div class="col col-10"></div>
       </div>
 
       <div class="row">
-        <div class="col col-100">
-          Not sure what you're looking for yet? No problem, tap the filter button next to the search bar to bring up a list of filter options.
+        <div class="col col-100 infoText">
+         Not sure what you're looking for yet? No problem, tap the filter button next to the search bar to bring up a list of filter options 
         </div>
       </div>
 
     </ion-slide>
-
 
     <ion-slide>
     <ion-content class="tutorialContent">
@@ -74,6 +71,73 @@
       <div class="row">
         <div class="col col-100 infoText">
           You can filter activities with any cobination of days, catergory, times and ages. v Select your choices and press OK to see all activities that match your search, easy!
+        </div>
+      </div>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide>
+    <ion-content class="tutorialContent">
+      <h3>Detailed Info</h3>
+      <div class="row">
+        <div class="col col-100 infoText">
+          Once you find the activity you're looking for just tap it to get more information. The symbols are explained below.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-ios-location iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          The venue of the current activity. Tap the address to open in Google maps.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+          <i class="icon ion-android-person iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          Contact name of the activity organiser.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-ios-telephone iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          Contact phone number of the activity organiser.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-at iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          Contact email address of the activity organiser.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-clipboard iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          Any special futher information about the activity, such as if it's only on fortnightly or if its a ladies only event etc.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-android-time iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          A list of the days and times the activity is running. 
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-10 tutIcon">
+            <i class="icon ion-ios-people iconI"></i>
+        </div>
+        <div class="col col-90 tutDetails">
+          The age ranges that the activity is suitable for.
         </div>
       </div>
       </ion-content>

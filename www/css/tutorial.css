@@ -29,5 +29,17 @@
 
 .infoText {
   text-align: justify;
+  padding: 10px;
 
+}
+
+.tutIcon {
+  font-size: 35px;
+  color: #4d4d4d;
+}
+
+.tutDetails {
+  text-align: justify;
+  padding-left: 10px;
+  padding-right: 10px;
 }

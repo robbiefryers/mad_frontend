@@ -116,6 +116,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 
 	$scope.searchTimes = function(item) {
 		for (i=0; i<item.days.length; i++){
+			console.log("digest called");
 			if($scope.startTime <= parseInt(item.days[i].startTime.substring(0, 2)) && 
 				$scope.endTime >= parseInt(item.days[i].endTime.substring(0, 2))){
 				return true;

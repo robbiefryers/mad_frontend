@@ -5,25 +5,16 @@
 
 	<ion-content class="has-subheader">
 
-
-
 	  <li class="item item-toggle">
 	     Show tutorial on start up
 	     <label class="toggle toggle-assertive">
-	       <input type="checkbox">
+	       <input type="checkbox" ng-model="tutorialToggle" ng-click="changeTutorial()">
 	       <div class="track">
 	         <div class="handle"></div>
 	       </div>
 	     </label>
 	  </li>
 	
-		<div class="item range range-energized">
-			<span class="smallA">A</span>
-			<input id="range" type="range" min="12" max="24" ng-model="fontSize" ng-change="changeFontSize(fontSize)">
-			<span class="bigA">A</span>
-		</div>
-
-		Current font size is: {{fontSize}}
 	</ion-content>
 </ion-view>
 
