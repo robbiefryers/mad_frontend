@@ -42,13 +42,15 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
       });
 
     $scope.filter = function() {
-   		var dayss = [];
+    	console.log("filter");
+    	return false;
+   		/*var dayss = [];
     	for(i=0; i<7; i++){
     		if($scope.modalDays[i].checked==true){
     			dayss.push($scope.modalDays[i].day);
     		}
     	}
-    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);
+    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);*/
     }
 
 	$scope.clearFilters = function() {
