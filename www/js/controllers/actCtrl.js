@@ -1,6 +1,6 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
+module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
 
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
@@ -11,6 +11,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 		{day: "Saturday", checked: false},
 		{day: "Sunday", checked: false},
 	];
+	$scope.catData =[];
 
 	$scope.agesUp = 65;
 	$scope.agesLow = 0;
@@ -22,6 +23,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
       url: ApiEndpoint.url + 'activities'
     }).then(function successCallback(response) {
       $scope.myData = response.data;
+      $scope.filteredData = response.data;
       }, function errorCallback(response) {
       	$scope.showAlert();
 
@@ -31,7 +33,6 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
       method: 'GET',
       url: ApiEndpoint.url + 'categories'
     }).then(function successCallback(response) {
-    	$scope.catData =[];
 		for(i=0; i<response.data.length; i++) {
 			$scope.catData[i] = {cat: response.data[i].name , checked: false};
 		}
@@ -39,6 +40,16 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
       	$scope.showAlert();
 
       });
+
+    $scope.filter = function() {
+   		var dayss = [];
+    	for(i=0; i<7; i++){
+    		if($scope.modalDays[i].checked==true){
+    			dayss.push($scope.modalDays[i].day);
+    		}
+    	}
+    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);
+    }
 
 	$scope.clearFilters = function() {
 		$scope.agesUp =65;
@@ -50,7 +61,8 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 		}
 		for(i=0; i<$scope.catData.length; i++){
 			$scope.catData[i].checked=false;
-		}	
+		}
+		$scope.myData = $scope.filteredData;	
 	}
 
 	$scope.increaseStartTime = function() {
@@ -114,81 +126,6 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 		}
 	};	
 
-	$scope.searchTimes = function(item) {
-		for (i=0; i<item.days.length; i++){
-			console.log("digest called");
-			if($scope.startTime <= parseInt(item.days[i].startTime.substring(0, 2)) && 
-				$scope.endTime >= parseInt(item.days[i].endTime.substring(0, 2))){
-				return true;
-			}
-		}	
-		return false;
-	}
-
-	$scope.searchAges = function(item) {
-		//case when max age is above max filtering age
-		if ($scope.agesUp == 65){
-			if($scope.agesLow <= item.agesUpper && ($scope.agesUp+34) >= item.agesLower) {
-				return true;
-			}
-		}
-		else{
-			if($scope.agesLow <= item.agesUpper && $scope.agesUp >= item.agesLower){
-				return true
-			}
-		}
-		return false;
-	}
-
-    $scope.searchDays = function(item) {
-    	//go through monday to friday check boxes
-    	var count=0;
-    	for (i=0; i<$scope.modalDays.length; i++) {
-    		//if a check box is checked, loop through items days to see if 
-    		//they match the check box day
-    		if($scope.modalDays[i].checked == true) {
-    			count ++;
-    			for (j=0; j<item.days.length; j++){
-    				if ((item.days[j].day.indexOf($scope.modalDays[i].day)) !=-1){
-    					return true; 
-    				}
-    			}
-    		}
-    	}
-		//the count will be 0 if no checkboxes are checked in which case we want to
-		//return all of the items
-   		if (count == 0 ){
-   			return true;
-   		}
-    	return false;
-    };
-
-
-
-    $scope.searchCategories = function(item) {
-    	//go through monday to friday check boxes
-    	var count=0;
-    	for (i=0; i<$scope.catData.length; i++) {
-    		//if a check box is checked, loop through items days to see if 
-    		//they match the check box day
-    		if($scope.catData[i].checked == true) {
-    			count ++;
-    			for (j=0; j<item.cats.length; j++){
-    				if ((item.cats[j].catName.name.indexOf($scope.catData[i].cat)) !=-1){
-    					return true; 
-    				}
-    			}
-    		}
-    	}
-		//the count will be 0 if no checkboxes are checked in which case we want to
-		//return all of the items
-   		if (count == 0 ){
-   			return true;
-   		}
-    	return false;
-    };
-
-
   // Modal 1
     $ionicModal.fromTemplateUrl('templates/activities/filterMainModal.html', function(modal) {
       $scope.oModal1 = modal;
@@ -227,7 +164,7 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
     };
 
     $scope.closeModal = function(index) {
-      if (index == 1) $scope.oModal1.hide();
+      if (index == 1){ $scope.oModal1.hide(); $scope.filter();}
       else if (index ==2) $scope.oModal2.hide();
       else $scope.oModal3.hide();
     };
