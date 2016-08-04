@@ -267,4 +267,3 @@ module.controller('ActivityCtrl', function($scope, $http, $state, $ionicModal,$i
 
 
 })
-

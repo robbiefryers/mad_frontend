@@ -1,4 +1,4 @@
-angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices', 'maryhillConstants', 'ionic-native-transitions', 'ngCordova'])
+angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhillServices', 'maryhillFilters', 'maryhillConstants', 'ionic-native-transitions', 'ngCordova'])
 
 .constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated'
