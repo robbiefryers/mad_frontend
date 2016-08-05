@@ -4,9 +4,10 @@
 	</ion-header-bar>
 	
 	<ion-content class="has-sub">
+
 		<form name="form" ng-submit="login()" role="form">
 			<div class="padding">
-				<p>If you want to follow evetns and get up to date notifications please sign up below for a user account.</p>
+				<p>If you want to follow  and get up to date notifications please sign up below for a user account.</p>
 				<label class="item item-input">
 					<input type="text" name="username" placeholder="Username" ng-model="newUser.name">
 				</label>
@@ -17,5 +18,9 @@
 				<button class="button button-block button-positive" ng-click="signUp()">Sign Up</button>
 			</div>
 		</form>
+		<div ng-init="isDisplayed = true">
+    <div ng-show="isDisplayed">something</div>
+    <button ng-click="isDisplayed = !isDisplayed">Toggle</button>
+</div>
 	</ion-content>
 </ion-view>

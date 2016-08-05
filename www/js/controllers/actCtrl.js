@@ -2,6 +2,7 @@ var module = angular.module('maryhillControllers');
 
 module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
 
+
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
 		{day: "Tuesday", checked: false},
@@ -41,17 +42,19 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 
       });
 
-    $scope.filter = function() {
+
+
+    $scope.filters = function() {
     	console.log("filter");
-    	return false;
-   		/*var dayss = [];
+   		var dayss = [];
     	for(i=0; i<7; i++){
     		if($scope.modalDays[i].checked==true){
     			dayss.push($scope.modalDays[i].day);
     		}
     	}
-    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);*/
+    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);
     }
+
 
 	$scope.clearFilters = function() {
 		$scope.agesUp =65;
@@ -63,8 +66,7 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 		}
 		for(i=0; i<$scope.catData.length; i++){
 			$scope.catData[i].checked=false;
-		}
-		$scope.myData = $scope.filteredData;	
+		}	
 	}
 
 	$scope.increaseStartTime = function() {
@@ -128,6 +130,8 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 		}
 	};	
 
+
+
   // Modal 1
     $ionicModal.fromTemplateUrl('templates/activities/filterMainModal.html', function(modal) {
       $scope.oModal1 = modal;
@@ -166,7 +170,7 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
     };
 
     $scope.closeModal = function(index) {
-      if (index == 1){ $scope.oModal1.hide(); $scope.filter();}
+      if (index == 1){ $scope.oModal1.hide(); 	$scope.filters();}
       else if (index ==2) $scope.oModal2.hide();
       else $scope.oModal3.hide();
     };
@@ -201,7 +205,6 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
     $scope.movePage = function(n) {
       allInfo.details = n.data;
       $state.go('app.activityInfo');
-
     };
 
 

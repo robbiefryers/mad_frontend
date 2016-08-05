@@ -16,6 +16,12 @@ module.controller('SignUpCtrl', function ($scope, $rootScope, $state, $http, Api
     });
   };
 
+  $scope.isDisplayed= false;
+
+    $scope.$watch('isDisplayed', function($scope) {
+      console.log('hello');
+    
+    });
    
 
 
