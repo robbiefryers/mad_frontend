@@ -91,7 +91,6 @@ angular.module('maryhillServices', [])
 		});
 	};
 
-
 	var login = function(user) {
 		return $q(function(resolve, reject) {
 			$http({

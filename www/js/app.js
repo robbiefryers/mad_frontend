@@ -128,7 +128,8 @@ $stateProvider
     abstract: true,
     views: {
       'menuContent': {
-        templateUrl: "templates/super/super.html"
+        templateUrl: "templates/super/super.html",
+        controller: 'superCtrl'
       }
     },
     data: {
@@ -141,8 +142,7 @@ $stateProvider
     url: '/modify',
     views: {
       'modify': {
-        templateUrl: 'templates/super/modify.html',
-        controller: 'superCtrl'
+        templateUrl: 'templates/super/modify.html'
       }
     }
   })

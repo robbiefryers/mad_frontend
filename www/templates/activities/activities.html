@@ -20,12 +20,13 @@
 	
 	<div class="bar" id="filterSubheader">
 		<div class="row rowHead">
-			<div class="col col-25 text-left">Activity</div>
+			<div class="col col-25 text-left" ng-click="loading=true">Activity</div>
 			<div class="col col-25 text-left">Day(s)</div>
 			<div class="col col-30 text-left">Time(s)</div>
 			<div class="col col-20 text-left">Ages</div>
 		</div>
 	</div>
+
 
 	<ion-content class="activityBody">
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>

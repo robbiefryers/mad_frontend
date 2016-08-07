@@ -64,50 +64,6 @@ bottom: 55px;
 }
 
 
-/* Fix modal backdrop for smaller devices */
-
-@media (max-width: 679px) {
-
-	#filterMainModal, #dayModal {
-
-		min-height: initial
-	}
-	.active .modal-backdrop-bg {
-		opacity: .5;
-	}
-	.modal-backdrop-bg {
-		-webkit-transition: opacity 100ms ease-in-out;
-		transition: opacity 100ms ease-in-out;
-		background-color: #000;
-		opacity: 0;
-	}
-}
-
-
-
-.scale-in {
-	-webkit-transform: scale(0.0);
-  	transform: scale(0.0);
-  	opacity: 0;
-}
-.scale-in.ng-enter,
-.scale-in > .ng-enter {
-	-webkit-transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
- 	transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
-}
-.scale-in.ng-enter-active,
-.scale-in > .ng-enter-active {
-	-webkit-transform: scale(1);
- 	transform: scale(1);
-	opacity: 1;
-}
-.scale-in.ng-leave,
-.scale-in > .ng-leave {
-	-webkit-transition: all ease-in-out 250ms;
- 	transition: all ease-in-out 250ms;
-}
-
-
 
 .col-25 {
 	white-space: normal;

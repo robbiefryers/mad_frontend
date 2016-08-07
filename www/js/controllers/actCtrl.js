@@ -1,6 +1,14 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo) {
+module.controller('ActivityCtrl', function($scope, $timeout, $http, $filter, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo, $ionicLoading) {
+
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
 
 
 	$scope.modalDays = [
@@ -12,22 +20,27 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 		{day: "Saturday", checked: false},
 		{day: "Sunday", checked: false},
 	];
-	$scope.catData =[];
 
+	$scope.catData =[];
 	$scope.agesUp = 65;
 	$scope.agesLow = 0;
 	$scope.startTime = 8;
 	$scope.endTime = 24;
+
 
     $http({
       method: 'GET',
       url: ApiEndpoint.url + 'activities'
     }).then(function successCallback(response) {
       $scope.myData = response.data;
+      console.log($scope.myData);
       $scope.filteredData = response.data;
+
       }, function errorCallback(response) {
       	$scope.showAlert();
 
+      }).finally(function() {
+		$ionicLoading.hide();
       });
 
     $http({
@@ -42,17 +55,27 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 
       });
 
-
-
     $scope.filters = function() {
-    	console.log("filter");
-   		var dayss = [];
-    	for(i=0; i<7; i++){
-    		if($scope.modalDays[i].checked==true){
-    			dayss.push($scope.modalDays[i].day);
-    		}
-    	}
-    	$scope.myData = $filter('searchDays')($scope.filteredData, dayss);
+    	$scope.closeModal(1);
+    	$ionicLoading.show({content: 'Loading',animation: 'fade-in', showBackdrop: true, maxWidth: 200, showDelay: 0});
+
+    	//allow 300 ms delay for modal css transition to complete
+		$timeout(function () {
+	   		var dayss = [];
+	   		var catss = [];
+	    	for(i=0; i<7; i++){
+	    		if($scope.modalDays[i].checked==true){
+	    			dayss.push($scope.modalDays[i].day);
+	    		}
+	    	}
+	    	for(i=0; i<$scope.catData.length; i++){
+	    		if($scope.catData[i].checked == true){
+	    			catss.push($scope.catData[i].cat);
+	    		}
+	    	}
+	    	$scope.myData = $filter('searchAll')($scope.filteredData, dayss, $scope.startTime, $scope.endTime, $scope.agesLow, $scope.agesUp, catss);
+	    	$ionicLoading.hide();
+		}, 300);
     }
 
 
@@ -66,7 +89,8 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 		}
 		for(i=0; i<$scope.catData.length; i++){
 			$scope.catData[i].checked=false;
-		}	
+		}
+		$scope.myData = $scope.filteredData;	
 	}
 
 	$scope.increaseStartTime = function() {
@@ -130,8 +154,6 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 		}
 	};	
 
-
-
   // Modal 1
     $ionicModal.fromTemplateUrl('templates/activities/filterMainModal.html', function(modal) {
       $scope.oModal1 = modal;
@@ -170,11 +192,10 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
     };
 
     $scope.closeModal = function(index) {
-      if (index == 1){ $scope.oModal1.hide(); 	$scope.filters();}
+      if (index == 1) $scope.oModal1.hide();
       else if (index ==2) $scope.oModal2.hide();
       else $scope.oModal3.hide();
     };
-
 
   $scope.showAlert = function() {
     var alertPopup = $ionicPopup.alert({
@@ -194,6 +215,7 @@ module.controller('ActivityCtrl', function($scope, $http, $filter, $state, $ioni
 			url: ApiEndpoint.url + 'activities'
 		}).then(function successCallback(response) {
 			$scope.myData = response.data;
+			$scope.filteredData = response.data;
 
 		}, function errorCallback(response) {
 			$scope.showAlert();
