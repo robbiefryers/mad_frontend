@@ -1,6 +1,6 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('ActivityCtrl', function($scope, $timeout, $http, $filter, $state, $ionicModal,$ionicPopup, ApiEndpoint, allInfo, $ionicLoading) {
+module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restService, $filter, $state, $ionicModal,$ionicPopup, $ionicLoading) {
 
   $ionicLoading.show({
     content: 'Loading',
@@ -10,7 +10,15 @@ module.controller('ActivityCtrl', function($scope, $timeout, $http, $filter, $st
     showDelay: 0
   });
 
-
+  restService.getAct().then(function successCallback(result) {  
+       $scope.myData = result;
+       $scope.filteredData = result;
+    }, function errorCallback(response) {
+    	$scope.showAlert();
+    }).finally(function() {
+    	$ionicLoading.hide();
+    });
+ 
 	$scope.modalDays = [
 		{day: "Monday", checked: false},
 		{day: "Tuesday", checked: false},
@@ -28,32 +36,6 @@ module.controller('ActivityCtrl', function($scope, $timeout, $http, $filter, $st
 	$scope.endTime = 24;
 
 
-    $http({
-      method: 'GET',
-      url: ApiEndpoint.url + 'activities'
-    }).then(function successCallback(response) {
-      $scope.myData = response.data;
-      console.log($scope.myData);
-      $scope.filteredData = response.data;
-
-      }, function errorCallback(response) {
-      	$scope.showAlert();
-
-      }).finally(function() {
-		$ionicLoading.hide();
-      });
-
-    $http({
-      method: 'GET',
-      url: ApiEndpoint.url + 'categories'
-    }).then(function successCallback(response) {
-		for(i=0; i<response.data.length; i++) {
-			$scope.catData[i] = {cat: response.data[i].name , checked: false};
-		}
-      }, function errorCallback(response) {
-      	$scope.showAlert();
-
-      });
 
     $scope.filters = function() {
     	$scope.closeModal(1);
@@ -209,19 +191,15 @@ module.controller('ActivityCtrl', function($scope, $timeout, $http, $filter, $st
     });
   }; 
 
-    $scope.doRefresh = function() {
-		$http({
-			method: 'GET',
-			url: ApiEndpoint.url + 'activities'
-		}).then(function successCallback(response) {
-			$scope.myData = response.data;
-			$scope.filteredData = response.data;
-
-		}, function errorCallback(response) {
-			$scope.showAlert();
-		});
-    	$scope.$broadcast('scroll.refreshComplete');
-  };
+$scope.doRefresh = function() {
+	restService.getAct().then(function successCallback(result) {  
+		$scope.myData = result;
+		$scope.filteredData = result;
+	}, function errorCallback(response) {
+		$scope.showAlert();
+	});
+	$scope.$broadcast('scroll.refreshComplete');
+};
 
 
     $scope.movePage = function(n) {

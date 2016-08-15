@@ -8,7 +8,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Activity</span>
-					<input type="text" ng-model="sharedInfo.name">
+					<input type="text" ng-model="jsonInfo.name">
 				</label>
 			</div>
 		</div>
@@ -16,7 +16,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Address</span>
-					<input type="text" ng-model="sharedInfo.venue">
+					<input type="text" ng-model="jsonInfo.venue">
 				</label>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Postcode</span>
-					<input type="text" ng-model="sharedInfo.postcode">
+					<input type="text" ng-model="jsonInfo.postcode">
 				</label>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Contact Name</span>
-					<input type="text" ng-model="sharedInfo.contactName">
+					<input type="text" ng-model="jsonInfo.contactName">
 				</label>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Contact Number</span>
-					<input type="tel" ng-model="sharedInfo.number">
+					<input type="tel" ng-model="jsonInfo.number">
 				</label>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Contact Email</span>
-					<input type="text" ng-model="sharedInfo.contactEmail">
+					<input type="text" ng-model="jsonInfo.contactEmail">
 				</label>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 			<div class="col col-100">
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Special Further Info</span>
-					<input type="text" ng-model="sharedInfo.special">
+					<input type="text" ng-model="jsonInfo.special">
 				</label>
 			</div>
 		</div>
@@ -68,15 +68,98 @@
 				</div>
 				<div class="row">
 					<div class="col col-50">
-						<input type="tel" class="agesEdit" ng-model="sharedInfo.agesLower">
+						<input type="tel" class="agesEdit" ng-model="jsonInfo.agesLower">
 					</div>
 					<div class="col col-50">
-						<input type="tel" class="agesEdit" ng-model="sharedInfo.agesUpper">
+						<input type="tel" class="agesEdit" ng-model="jsonInfo.agesUpper">
 					</div>
 				</div>
 				
 			</div>
 
+		</div>
+
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 1
+					</div>
+						<select ng-model="select.option[0]">
+							<option value="{{select.option[0]}}">{{select.option[0]}}</option>
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
+						</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 2
+					</div>
+						<select ng-model="select.option[1]">
+							<option value="{{select.option[1]}}">{{select.option[1]}}</option>
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
+
+						</select>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input item-select">
+					<div class="input-label catOptions">
+						Category 3
+					</div>
+						<select ng-model="select.option[2]">
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
+						</select>
+				</label>
+			</div>
+		</div>
+
+
+		<div class="row newEventDayRow" ng-repeat="item in jsonInfo.days" ng-class="{firstDay:$first}">
+			<div class="col col-30 newEventCol">
+				<ion-checkbox class="newCheckbox" ng-click="nullTime({data: item})" ng-model="item.checked">{{item.day | limitTo:3:0}}</ion-checkbox>
+			</div>
+			<div class="col col-35 newEventCol">
+				<div class="row innerRow">
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="decreaseStartTime({data: item})" ng-disabled="item.checked==false">
+							<i class="icon ion-chevron-left"></i>
+							</button>
+					</div>
+					<div class="col col-60 newTimeWrap">
+						<div class="newTimePicker text-center" ng-if="item.startMin==0">{{(item.startHour)}}:{{item.startMin}}0</div>
+						<div class="newTimePicker text-center" ng-if="item.startMin!=0">{{(item.startHour)}}:{{item.startMin}}</div>
+					</div>
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime({data: item})" ng-disabled="item.checked==false">
+							<i class="icon ion-chevron-right"></i>
+							</button>
+					</div>
+				</div>
+			</div>
+			<div class="col col-35 newEventCol">
+				<div class="row innerRow">
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="decreaseEndTime({data: item})" ng-disabled="item.checked==false">
+							<i class="icon ion-chevron-left"></i>
+							</button>
+					</div>
+					<div class="col col-60 newTimeWrap">
+						<div class="newTimePicker text-center" ng-if="item.endMin==0">{{(item.endHour)}}:{{item.endMin}}0</div>
+						<div class="newTimePicker text-center" ng-if="item.endMin!=0">{{(item.endHour)}}:{{item.endMin}}</div>
+					</div>
+					<div class="col col-20 newTimeWrapArrow">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseEndTime({data: item})" ng-disabled="item.checked==false">
+							<i class="icon ion-chevron-right"></i>
+							</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="padding confirmNewButton">

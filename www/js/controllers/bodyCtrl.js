@@ -25,4 +25,3 @@ module.controller('bodyCtrl',function($scope, $state, AuthService, AUTH_EVENTS, 
   };
 
 })
-

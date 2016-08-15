@@ -232,7 +232,7 @@ $stateProvider
     }
 })
 
-
+/*
 .run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
  console.log("state change check");
@@ -248,3 +248,5 @@ $stateProvider
  
   });
 })
+
+*/

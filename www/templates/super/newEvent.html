@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="name" placeholder="Name">
+					<input type="text" name="name" placeholder="Name" ng-model="jsonData.name">
 					<i class="icon ion-asterisk placeholder-icon"></i>
 				</label>
 			</div>
@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="address" placeholder="Address">
+					<input type="text" name="address" placeholder="Address" ng-model="jsonData.venue">
 					<i class="icon ion-asterisk placeholder-icon"></i>
 				</label>
 			</div>
@@ -30,42 +30,64 @@
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="contactName" placeholder="Contact Name">
+					<input type="text" name="postcode" placeholder="Postcode" ng-model="jsonData.postcode">
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="contactName" placeholder="Contact Name" ng-model="jsonData.contactName">
 				</label>
 			</div>
 		</div>				
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="contactNumber" placeholder="Contact Phone">
+					<input type="text" name="contactNumber" placeholder="Contact Phone" ng-model="jsonData.number">
 				</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="special" placeholder="Special Info Eg. Women only, meet fornightly etc.">
+					<input type="text" name="special" placeholder="Special Info Eg. Women only, meet fornightly etc." ng-model="jsonData.special">
 				</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input newEventLabel">
-					<input type="text" name="special" placeholder="Activity Admin (enter their username)">
+					<input type="text" name="special" placeholder="Activity Admin (enter their username)" ng-model="jsonData.adminName">
 				</label>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col col-100 agesEditRow">
+				<div class="row agesEditTitle newAges">
+					Ages From / Ages To
+				</div>
+				<div class="row">
+					<div class="col col-50">
+						<input type="tel" class="agesEdit" ng-model="jsonData.agesLower">
+					</div>
+					<div class="col col-50">
+						<input type="tel" class="agesEdit" ng-model="jsonData.agesUpper">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col col-100">
 				<label class="item item-input item-select">
 					<div class="input-label catOptions">
 						Category 1
 					</div>
-						<select>
-							<option value="">Select Option</option>
-							<option>Blue</option>
-							<option>Green</option>
-							<option>Red</option>
+						<select ng-model="select.option[0]">
+							<option value="{{select.option[0]}}">{{select.option[0]}}</option>
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
 						</select>
 				</label>
 			</div>
@@ -76,11 +98,10 @@
 					<div class="input-label catOptions">
 						Category 2
 					</div>
-						<select>
-							<option value="">Select Option</option>
-							<option>Blue</option>
-							<option>Green</option>
-							<option>Red</option>
+						<select ng-model="select.option[1]">
+							<option value="{{select.option[1]}}">{{select.option[1]}}</option>
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
+
 						</select>
 				</label>
 			</div>
@@ -91,32 +112,31 @@
 					<div class="input-label catOptions">
 						Category 3
 					</div>
-						<select>
-							<option value="">Select Option</option>
-							<option>Blue</option>
-							<option>Green</option>
-							<option>Red</option>
+						<select ng-model="select.option[2]">
+							<option value="{{cat.name}}" ng-repeat="cat in cats">{{cat.name}}</option>
 						</select>
 				</label>
 			</div>
 		</div>
 
-		<div class="row newEventDayRow" ng-repeat="item in dayTimes" ng-class="{firstDay:$first}">
+
+		<div class="row newEventDayRow" ng-repeat="item in blankDays" ng-class="{firstDay:$first}">
 			<div class="col col-30 newEventCol">
-				<ion-checkbox class="newCheckbox">{{item.day | limitTo:3:0}}</ion-checkbox>
+				<ion-checkbox class="newCheckbox" ng-click="nullTime({data: item})" ng-model="item.checked">{{item.day | limitTo:3:0}}</ion-checkbox>
 			</div>
 			<div class="col col-35 newEventCol">
 				<div class="row innerRow">
 					<div class="col col-20 newTimeWrapArrow">
-						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="decreaseStartTime({data: item})" ng-disabled="item.checked==false">
 							<i class="icon ion-chevron-left"></i>
 							</button>
 					</div>
 					<div class="col col-60 newTimeWrap">
-						<div class="newTimePicker text-center">08:00</div>
+						<div class="newTimePicker text-center" ng-if="item.startMin==0">{{(item.startHour)}}:{{item.startMin}}0</div>
+						<div class="newTimePicker text-center" ng-if="item.startMin!=0">{{(item.startHour)}}:{{item.startMin}}</div>
 					</div>
 					<div class="col col-20 newTimeWrapArrow">
-						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime({data: item})" ng-disabled="item.checked==false">
 							<i class="icon ion-chevron-right"></i>
 							</button>
 					</div>
@@ -125,23 +145,25 @@
 			<div class="col col-35 newEventCol">
 				<div class="row innerRow">
 					<div class="col col-20 newTimeWrapArrow">
-						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="decreaseEndTime({data: item})" ng-disabled="item.checked==false">
 							<i class="icon ion-chevron-left"></i>
 							</button>
 					</div>
 					<div class="col col-60 newTimeWrap">
-						<div class="newTimePicker text-center">24:00</div>
+						<div class="newTimePicker text-center" ng-if="item.endMin==0">{{(item.endHour)}}:{{item.endMin}}0</div>
+						<div class="newTimePicker text-center" ng-if="item.endMin!=0">{{(item.endHour)}}:{{item.endMin}}</div>
 					</div>
 					<div class="col col-20 newTimeWrapArrow">
-						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseStartTime()">
+						<button type="button" class="button button-clear button-small button-dark time_picker_arrows" ng-click="increaseEndTime({data: item})" ng-disabled="item.checked==false">
 							<i class="icon ion-chevron-right"></i>
 							</button>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<div class="padding confirmNewButton">
-		<button class="button button-block button-positive">Create Activity</button>
+		<button class="button button-block button-positive" ng-click="create()">Create Activity</button>
 		</div>				
 	</ion-content>
 

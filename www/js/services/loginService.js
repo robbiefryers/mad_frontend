@@ -1,32 +1,6 @@
-angular.module('maryhillServices', [])
-	
-.service('settingsService', function(){
+var module = angular.module('maryhillServices')
 
-	var tutorialOn = true;
-
-	//set up setting variables in local storage on first time app opened
-	if (window.localStorage.getItem(tutorialOn) ==null){
-		window.localStorage.setItem(tutorialOn, true);
-	}
-
-	function getTutorialOption() {
-		return window.localStorage.getItem(tutorialOn);
-	}
-
-	function setTutorialOption() {
-		bool = JSON.parse(getTutorialOption());
-		boolChange = !bool;
-		window.localStorage.setItem(tutorialOn, boolChange);
-		return getTutorialOption();
-	}
-	return {
-		getTut: getTutorialOption,
-		setTut: setTutorialOption,
-		tutorial: tutorialOn,
-	}
-})
-
-.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
+module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 	var LOCAL_TOKEN_KEY = 'yourTokenKey';
 	var isAuthenticated = false;
 	var role;
@@ -59,6 +33,8 @@ angular.module('maryhillServices', [])
 
 		//very important line, set token as header for future requests!
 		$http.defaults.headers.common.Authorization = "Token " + authToken;
+		
+		
 		
 	}
 
@@ -135,11 +111,10 @@ angular.module('maryhillServices', [])
 	};
 })
 
-.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+module.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
 	return true;
 })
 
-.config(function ($httpProvider) {
+module.config(function ($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
 });
-
