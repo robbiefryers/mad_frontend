@@ -3,7 +3,7 @@
 		<h2 class="title">Log In</h2>
 	</ion-header-bar>
 	
-	<ion-content class="has-sub">
+	<ion-content class="has-subheader">
 		<form name="form" ng-submit="login()" role="form">
 			<div class="padding">
 				<p>If you run an activity please use the log in below to view and make changes to any activities.</p>
@@ -14,9 +14,6 @@
 					<input type="password" name="password" placeholder="Password" ng-model="user.password">
 				</label>
 				<button class="button button-block button-positive" ng-click="logIn()">Log In</button>
-				<button class="button button-block button-calm" ui-sref="app.signUp">Register</button>
-				<button class="button button-block button-calm" ng-click="logOut()">Logout</button>
-				<button class="button button-block button-energized" ng-click="Practice()">status</button>
 			</div>
 		</form>
 	</ion-content>

@@ -1,84 +1,24 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('superEditCtrl',function($scope, $state, allInfo, restService, timePicker){
+module.controller('superEditCtrl',function($scope, $state, allInfo, restService, timePicker, $ionicPopup){
+
+	//set sharedInfo to data passed by modify view
 	$scope.sharedInfo = allInfo.edit;
 
-	  restService.getCat().then(function successCallback(result) {  
-	       $scope.cats= result;
 
-	    }, function errorCallback(response) {
-	    	//blank
-	    });
+	//Call the API to get a list of all the categories
+	restService.getCat().then(function successCallback(result) {  
+		$scope.cats= result;
+	}, function errorCallback(response) {
+		//blank
+	});
 
+	//Initialise days array using the JSON array in timePicker service
+	$scope.days = timePicker.blank();
 
-		$scope.days =  [
-      	{
-      		"day": "Monday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Tuesday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Wednesday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Thursday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Friday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Saturday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	},
-      	{
-      		"day": "Sunday",
-      		"startHour": null,
-      		"endHour": null,
-      		"startMin": null,
-      		"endMin": null,
-      		"checked": false,
-      		"quarter": 0
-      	}
-      ];
-
-    $scope.initialiseDay = function(day, index){
-    	//get start and finish time hour values and convert them to ints
+	//Set up the days array to match days and times that the activity is already on
+	$scope.initialiseDay = function(day, index){
+		//get start and finish time hour values and convert them to ints
 		$scope.days[day].startHour = parseInt($scope.sharedInfo.days[index].startTime.substring(0, 2));
 		$scope.days[day].endHour = parseInt($scope.sharedInfo.days[index].endTime.substring(0, 2));
 		$scope.days[day].checked = true;
@@ -88,7 +28,7 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 		$scope.days[day].endMin = parseInt($scope.sharedInfo.days[index].endTime.substring(3, 5));
 	};
 
-
+	//loop through all the days the activty is on and call the helper method to set up the correct days
 	for(i=0; i<$scope.sharedInfo.days.length; i++) {
 
 		switch ($scope.sharedInfo.days[i].day){
@@ -120,34 +60,38 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 				$scope.initialiseDay(6, i);
 				break;
 		}
-
 	}
 
-	//set up JSON Object
-    $scope.jsonInfo = {
-      name: $scope.sharedInfo.name,
-      venue: $scope.sharedInfo.venue,
-      postcode: $scope.sharedInfo.postcode,
-      agesLower: $scope.sharedInfo.agesLower,
-      agesUpper: $scope.sharedInfo.agesUpper,
-      contactName: $scope.sharedInfo.contactName,
-      contactEmail: $scope.sharedInfo.contactEmail,
-      number: $scope.sharedInfo.number,
-      special: $scope.sharedInfo.special,
-      days: $scope.days,
-      cats: $scope.sharedInfo.cats
-    };
+	//Initialse JSON Object that will be sent as the put request, the days and categories is a challenge
+	//Probably a more elegant way to set them up
+	$scope.jsonInfo = {
+		name: $scope.sharedInfo.name,
+		venue: $scope.sharedInfo.venue,
+		postcode: $scope.sharedInfo.postcode,
+		agesLower: $scope.sharedInfo.agesLower,
+		agesUpper: $scope.sharedInfo.agesUpper,
+		contactName: $scope.sharedInfo.contactName,
+		contactEmail: $scope.sharedInfo.contactEmail,
+		number: $scope.sharedInfo.number,
+		special: $scope.sharedInfo.special,
+		days: $scope.days,
+		cats: $scope.sharedInfo.cats
+	};
 
- 	$scope.select = {
- 		option: [null, null, null]
- 	}
+	//Represents the 3 option inputs for categories 1,2,3 initialise to null
+	$scope.select = {
+		option: [null, null, null]
+	}
 
-    for(i=0; i<3; i++){
-    	if(angular.isDefined($scope.jsonInfo.cats[i])){
+	//got through the categories for the event and if defined set the option element to the category name
+	for(i=0; i<3; i++){
+		if(angular.isDefined($scope.jsonInfo.cats[i])){
 			$scope.select.option[i] = $scope.jsonInfo.cats[i].catName.name;
-    	}
-    }
+		}
+	}
 
+	//All these methods are taken care of by the timePicker service
+	//Used for matching checkboxes with days present and times
 	$scope.nullTime = function(item){
 		timePicker.nullTime(item);
 	};
@@ -169,7 +113,9 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 	};
 
 
-
+	//function that takes care of getting the users selections into the correct JSON format
+	//The data is sent via the PUT method in the restService
+	//most of the logic is concerned with the days and category arrays
 	$scope.update = function() {
 		$scope.daysJSON =[];
 		for(i=0; i<$scope.days.length; i++){
@@ -182,7 +128,25 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 			}
 		}
 		$scope.jsonInfo.days = $scope.daysJSON;
+		$scope.jsonInfo.cats = [];
+		for(i=0; i<3; i++){
+			if($scope.select.option[i]!=null){
+				var catObj = new Object();
+				var catObjName = new Object();
+				catObjName.name = $scope.select.option[i];
+				catObj.catName = catObjName;
+				$scope.jsonInfo.cats.push(catObj);
+			}
+		}
+		//once data is ready convert all to proper json format ready for http request
+		$scope.eventJSON = angular.toJson($scope.jsonInfo);
+
+		restService.putAct($scope.eventJSON, $scope.sharedInfo.id).then(function(msg) {
+			alert("success " + msg);
+			$state.go('app.super.modify');
+		}, function(msg){
+			alert("fail " + msg);
+		});
 	}
-
-
+	
 })

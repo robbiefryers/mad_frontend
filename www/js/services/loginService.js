@@ -78,12 +78,27 @@ module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 			}).then(function successCallback(response) {
 				if (response.data.success) {
 					storeUserCredentials(response.data.token, response.data.userGroup);
-					resolve(role);
+					resolve(response.data.firstTime);
 				} 
 
 			}, function errorCallback(response) {
-				console.log("faile");
+
 				reject(role);
+			});
+		});
+	};
+
+	var updatePassword = function(newPass) {
+		return $q(function(resolve, reject) {
+			$http({
+				method: "POST",
+				url: ApiEndpoint.url + 'new-pass/',
+				data: newPass,
+				headers: {'Content-Type': 'application/json'}
+			}).then(function successCallback(response) {
+					resolve(response);
+			}, function errorCallback(response) {
+				reject(response);
 			});
 		});
 	};
@@ -105,6 +120,7 @@ module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 		login: login,
 		register: register,
 		logout: logout,
+		updatePass: updatePassword,
 		isAuthorized: isAuthorized,
 		isAuthenticated: function() {return  isAuthenticated;},
 		role: function() {return role;}

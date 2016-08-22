@@ -25,7 +25,7 @@
 
 
 	<ion-content class="modifyContent">
-		<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in activities" ng-click="editPage({data: item})">
+		<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in activities | filter: searchText"" ng-click="editPage({data: item})">
 			<a class="row" id="actLink">
 				<div class="col col-100">{{item.name}}</div>
 			</a>

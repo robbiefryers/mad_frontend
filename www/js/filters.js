@@ -17,7 +17,6 @@ angular.module('maryhillFilters', [])
 				daysLoop2: for(j=0; j<individualItem.days.length; j++){
 
 					if(dayss[i].indexOf(individualItem.days[j].day) !=-1){
-						console.log('found');
 						passes++;
 
 						break daysLoop1;

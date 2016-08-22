@@ -128,21 +128,20 @@ $stateProvider
     abstract: true,
     views: {
       'menuContent': {
-        templateUrl: "templates/super/super.html",
-        controller: 'superCtrl'
+        templateUrl: "templates/super/super.html"
       }
     },
     data: {
       authorizedRoles: [USER_ROLES.super]
-    },
-    cache: false
+    }
   })
 
   .state('app.super.modify', {
     url: '/modify',
     views: {
       'modify': {
-        templateUrl: 'templates/super/modify.html'
+        templateUrl: 'templates/super/modify.html',
+        controller: 'superModCtrl'
       }
     }
   })
@@ -161,7 +160,8 @@ $stateProvider
     url: '/newEvent',
     views: {
       'newEvent': {
-        templateUrl: 'templates/super/newEvent.html'
+        templateUrl: 'templates/super/newEvent.html',
+        controller: 'newEventCtrl'
       }
     }
   })
@@ -170,7 +170,8 @@ $stateProvider
     url: '/newAdmin',
     views: {
       'newAdmin': {
-        templateUrl: 'templates/super/newAdmin.html'
+        templateUrl: 'templates/super/newAdmin.html',
+        controller: 'newAdminCtrl'
       }
     }
   })
