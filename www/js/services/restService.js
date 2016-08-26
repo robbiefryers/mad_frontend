@@ -11,6 +11,17 @@ module.service('restService', function($http, ApiEndpoint, $q){
   		});
 	};
 
+
+	var getAdminActivities = function() {
+		return $http({
+  			method: 'GET',
+  			url: ApiEndpoint.url + 'staff/'
+		}).then(function (result) {
+  			return result.data;
+  		});
+	}
+
+
 	var getCategories = function() {
 		return $http({
   			method: 'GET',
@@ -26,6 +37,39 @@ module.service('restService', function($http, ApiEndpoint, $q){
 				method: "PUT",
 				url: ApiEndpoint.url + 'activities/' + pk + '/',
 				data: updatedInfo,
+				headers: {'Content-Type': 'application/json'}
+
+			}).then(function successCallback(response) {
+				console.log(response);
+				resolve(response);
+				 
+			}, function errorCallback(response) {
+				console.log(response);
+				reject(response);
+			});
+		});	
+	}
+
+	var deleteActivity = function(pk) {
+		return $q(function(resolve, reject) {
+			$http({
+				method: "DELETE",
+				url: ApiEndpoint.url + 'activities/' + pk + '/'
+
+			}).then(function successCallback(response) {
+				resolve(response);		 
+			}, function errorCallback(response) {
+				reject(response);
+			});
+		});	
+	}
+
+	var newActivity= function(info) {
+		return $q(function(resolve, reject) {
+			$http({
+				method: "POST",
+				url: ApiEndpoint.url + 'new-event/',
+				data: info,
 				headers: {'Content-Type': 'application/json'}
 
 			}).then(function successCallback(response) {
@@ -47,9 +91,9 @@ module.service('restService', function($http, ApiEndpoint, $q){
 				data: userInfo,
 				headers: {'Content-Type': 'application/json'}
 			}).then(function successCallback(response){
-				resolve(response);
+				resolve(response.data);
 			}, function errorCallback(response){
-				reject(response);
+				reject(response.data);
 			});
 		});
 	}
@@ -58,6 +102,9 @@ module.service('restService', function($http, ApiEndpoint, $q){
 		getAct: getActivities,
 		getCat: getCategories,
 		putAct: putActivity,
-		newAdmin: newAdmin
+		newAdmin: newAdmin,
+		newAct: newActivity,
+		delAct: deleteActivity,
+		staffAct: getAdminActivities
 	};
 })

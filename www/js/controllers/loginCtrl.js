@@ -3,8 +3,8 @@ var module = angular.module('maryhillControllers');
 module.controller('LoginCtrl', function ($scope, AuthService, $state, ApiEndpoint, $ionicPopup, $ionicHistory) {
 
 	$scope.user = {
-		username: "jimhamilton",
-		password: "a"
+		username: "",
+		password: ""
 	};
 	$scope.newPass = {
 		passOne: "",
@@ -26,7 +26,7 @@ module.controller('LoginCtrl', function ($scope, AuthService, $state, ApiEndpoin
 					$ionicHistory.nextViewOptions({
   					disableBack: true
 					});
-					$state.go('app.admin');
+					$state.go('app.admin.modify');
 					$scope.setStatus("admin");
 				}
 				else {

@@ -1,6 +1,6 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('newEventCtrl',function($scope, $state, timePicker, restService, $ionicPopup ){
+module.controller('newEventCtrl',function($scope, $state, timePicker, AuthService, restService, $ionicPopup ){
 
   //Initialise days array using the JSON array in timePicker service
   $scope.blankDays = timePicker.blank();
@@ -14,7 +14,9 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, restServic
 
   $scope.select = {
   option: [null, null, null]
-  }
+  };
+
+  $scope.owner = {username:null};
 
   //set up JSON Object
   $scope.jsonData= {
@@ -27,14 +29,19 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, restServic
     contactEmail: null,
     number: null,
     special: null,
-    admin: null,
+    owner: null,
     days: [],
     cats: []
+
   };
+
+  $scope.role = AuthService.role();
+
 
 
   $scope.nullTime = function(item){
     timePicker.nullTime(item);
+    console.log($scope.role);
   };
 
   $scope.increaseStartTime = function(item){
@@ -63,8 +70,54 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, restServic
         $scope.jsonData.days.push(temp);
       }
     }
-    $scope.jsonData.cats = $scope.select.option;
-    console.log($scope.jsonData);
+    for(i=0; i<3; i++){
+      if($scope.select.option[i]!=null){
+        var catObj = new Object();
+        var catObjName = new Object();
+        catObjName.name = $scope.select.option[i];
+        catObj.catName = catObjName;
+        $scope.jsonData.cats.push(catObj);
+      }
+    }
+    
+    if(AuthService.role()==='admin_role'){
+      var ownObj = new Object();
+      ownObj.username = AuthService.uName();
+      $scope.jsonData.owner = ownObj;
+    }
+
+    else {
+
+      if ($scope.owner.username!=null){
+        var ownObj = new Object();
+        ownObj.username = $scope.owner.username;
+        $scope.jsonData.owner = ownObj;      
+      }
+    }
+
+    //once data is ready convert all to proper json format ready for http request
+    $scope.eventJSON = angular.toJson($scope.jsonData);
+    restService.newAct($scope.eventJSON).then(function(msg) {
+
+      var alertPopup = $ionicPopup.alert({
+        title: "Event Created",
+        template: "The new event was added to the directory",
+        okType: "button-positive"
+      });
+      
+      alertPopup.then(function(res) {
+        if(AuthService.role()==='admin_role'){
+          $state.go('app.admin.modify');
+        }
+        else {
+          $state.go('app.super.modify');
+        }
+      
+      });
+   
+    }, function(msg){
+      alert("fail " + msg);
+    });
   };
 
   //ensure time is in format HH:MM:00 for django rest
@@ -79,5 +132,5 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, restServic
     return s;
   };
 
-})
+});
 

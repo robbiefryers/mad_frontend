@@ -185,16 +185,16 @@ $stateProvider
     }
   })
 
-
   .state('app.admin', {
     url: "/admin",
+    abstract: true,
     views: {
       'menuContent': {
         templateUrl: "templates/admin/admin.html"
       }
     },
     data: {
-      authorizedRoles: [USER_ROLES.admin]
+      authorizedRoles: [USER_ROLES.super]
     },
     cache: false
   })
@@ -203,8 +203,28 @@ $stateProvider
     url: '/modify',
     views: {
       'modifyAdmin': {
-        templateUrl: 'templates/admin/modify.html',
-        controller: 'adminCtrl'
+        templateUrl: 'templates/super/modify.html',
+        controller: 'superModCtrl'
+      }
+    }
+  })
+
+  .state('app.admin.edit', {
+    url: '/edit',
+    views: {
+     'modifyAdmin': {
+       templateUrl: "templates/super/editEvent.html",
+       controller: 'superEditCtrl'
+     }
+    }
+  })
+
+  .state('app.admin.newEvent', {
+    url: '/newEvent',
+    views: {
+      'newEvent': {
+        templateUrl: 'templates/super/newEvent.html',
+        controller: 'newEventCtrl'
       }
     }
   })

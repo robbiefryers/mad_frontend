@@ -2,6 +2,7 @@ var module = angular.module('maryhillServices')
 
 module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 	var LOCAL_TOKEN_KEY = 'yourTokenKey';
+	var USERNAME = '';
 	var isAuthenticated = false;
 	var role;
 	var authToken;
@@ -13,8 +14,10 @@ module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 		}
 	}
 
-	function storeUserCredentials(token, userG) {
+	function storeUserCredentials(token, userG, username) {
 		window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
+		window.localStorage.setItem(USERNAME, username);
+		USERNAME = username;
 		useCredentials(token, userG);
 	}
 
@@ -77,7 +80,8 @@ module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 
 			}).then(function successCallback(response) {
 				if (response.data.success) {
-					storeUserCredentials(response.data.token, response.data.userGroup);
+					console.log(response.data)
+					storeUserCredentials(response.data.token, response.data.userGroup, response.data.username);
 					resolve(response.data.firstTime);
 				} 
 
@@ -122,6 +126,7 @@ module.service('AuthService', function($q, $http, ApiEndpoint, USER_ROLES){
 		logout: logout,
 		updatePass: updatePassword,
 		isAuthorized: isAuthorized,
+		uName: function() {return USERNAME;},
 		isAuthenticated: function() {return  isAuthenticated;},
 		role: function() {return role;}
 	};

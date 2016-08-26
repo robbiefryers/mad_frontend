@@ -165,3 +165,19 @@ color: black;
 	min-height: 45px;
 
 }
+
+.platform-android .tabs {
+	bottom: -1px !important;
+}
+
+/* Overwrites-fixes ionic header for ios6 */
+.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-header:not(.bar-subheader){
+    height: 44px;
+}
+.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+    margin-top: 0px;
+}
+.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .has-header,
+.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-subheader {
+    top: 44px;
+}

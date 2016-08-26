@@ -9,13 +9,13 @@
 	<ion-content id="modalHeaderD">
 
 		<ion-list>
-			<ion-checkbox ng-model="modalDays[0].checked">Monday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[1].checked">Tuesday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[2].checked">Wednesday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[3].checked">Thursday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[4].checked">Friday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[5].checked">Saturday</ion-checkbox>
-			<ion-checkbox ng-model="modalDays[6].checked">Sunday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[0].checked" ng-click="daysChanged(0)">Monday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[1].checked" ng-click="daysChanged(1)">Tuesday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[2].checked" ng-click="daysChanged(2)">Wednesday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[3].checked" ng-click="daysChanged(3)">Thursday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[4].checked" ng-click="daysChanged(4)">Friday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[5].checked" ng-click="daysChanged(5)">Saturday</ion-checkbox>
+			<ion-checkbox ng-model="modalDays[6].checked" ng-click="daysChanged(6)">Sunday</ion-checkbox>
 		</ion-list>
 
 

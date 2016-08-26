@@ -38,6 +38,17 @@
   color: #4d4d4d;
 }
 
+.iconImg {
+    width: 50%;
+  max-width: 400px;
+}
+
+.actImg {
+  margin-top: 20px;
+      width: 100%;
+  max-width: 400px;
+}
+
 .tutDetails {
   text-align: justify;
   padding-left: 10px;

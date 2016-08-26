@@ -3,8 +3,8 @@ var module = angular.module('maryhillControllers');
 module.controller('newAdminCtrl',function($scope, restService, $ionicPopup) {
 
   $scope.user = {
-    username: "asd",
-    password: "asdasd"
+    username: "",
+    password: ""
   };
 
   $scope.newAdmin = function() {

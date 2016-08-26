@@ -48,7 +48,17 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 	$scope.agesLow = 0;
 	$scope.startTime = 8;
 	$scope.endTime = 24;
+	$scope.dayFilters = 0;
 
+	//function used to control whether to show list of selected days OR the tap to select days div
+	$scope.daysChanged = function(i) {
+		if($scope.modalDays[i].checked==true){
+			$scope.dayFilters++;
+		}
+		else {
+			$scope.dayFilters--;
+		}
+	}
 	//invoked by filterMainModals 'Ok' button, firstly close the modal and then display the loading overlay
 	$scope.filters = function() {
 		$scope.closeModal(1);
@@ -84,6 +94,7 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 			$scope.agesLow = 0;
 			$scope.startTime = 8;
 			$scope.endTime = 24;
+			$scope.dayFilters = 0;
 			for(i=0; i<7; i++){
 				$scope.modalDays[i].checked=false;
 			}

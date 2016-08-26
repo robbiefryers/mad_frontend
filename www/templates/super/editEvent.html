@@ -60,7 +60,13 @@
 				</label>
 			</div>
 		</div>
-
+		<div class="row" ng-if="role=='super_role'">
+			<div class="col col-100">
+				<label class="item item-input newEventLabel">
+					<input type="text" name="special" placeholder="Activity Admin (enter their username)" ng-model="owner.username">
+				</label>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col col-100 agesEditRow">
 				<div class="row agesEditTitle">

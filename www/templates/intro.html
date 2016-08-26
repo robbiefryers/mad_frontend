@@ -10,10 +10,10 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right"> 
-    <button class="button button-light button-clear no-animation" ng-click="next()" ng-show="slideIndex != 3">
+    <button class="button button-light button-clear no-animation" ng-click="next()" ng-show="slideIndex != 4">
       <i class="ion-chevron-right custom-icon"></i>
     </button>
-    <button class="button button-light button-clear no-animation" ng-click="startApp()" ng-show="slideIndex == 3">
+    <button class="button button-light button-clear no-animation" ng-click="startApp()" ng-show="slideIndex == 4">
       Lets Go!
     </button>
   </ion-nav-buttons>
@@ -22,21 +22,42 @@
   <!--ng-Style= "{'font-size': size + 'px'}"-->
   <ion-slide-box class="" on-slide-changed="slideChanged(index)" >
     <ion-slide>
-      <h3>Thank you for downloading the Maryhill Activity App!</h3>
+      <h3>Welcome to the Maryhill Activity Directory App!</h3>
       <div id="logo">
-        <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+        <img class="iconImg" src="./img/icon.png">
       </div>
       <p>
         Swipe to the left to take the tutorial!
       </p>
       <p>
-        Or if you prefer you can skip straight away.
+        Or if you prefer you can skip and go straight to the app.
       </p>
     </ion-slide>
-    
 
     <ion-slide>
-      <h3>Activities</h3>
+      <h3>Activity List</h3>
+      <div class="row">
+        <div class="col col-100 infoText">
+          The first thing you'll see is the activities list. It shows all the activites going on right now in Maryhill!
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-100">
+          <img class="actImg" src="./img/activities.png">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-100 infoText">
+         The main page only shows the key information. If you want to find out more, just tap on any activity in the list to get more details.
+        </div>
+      </div>
+
+    </ion-slide>    
+
+    <ion-slide>
+      <h3>Finding Activities</h3>
       <div class="row">
         <div class="col col-100 infoText">
           Find activities easily. Tap the search bar to bring up the keyboard and search for an activity by name.
@@ -51,7 +72,7 @@
 
       <div class="row">
         <div class="col col-100 infoText">
-         Not sure what you're looking for yet? No problem, tap the filter button next to the search bar to bring up a list of filter options 
+         Not sure what you're looking for yet? No problem, tap the filter button next to the search bar to bring up a list of filter options.
         </div>
       </div>
 
@@ -70,7 +91,7 @@
 
       <div class="row">
         <div class="col col-100 infoText">
-          You can filter activities with any cobination of days, catergory, times and ages. v Select your choices and press OK to see all activities that match your search, easy!
+          You can filter activities using any cobination of days, catergory, times and ages. Select all your choices and press OK to see all activities that match your search, easy!
         </div>
       </div>
       </ion-content>

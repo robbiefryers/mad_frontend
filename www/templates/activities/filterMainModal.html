@@ -17,7 +17,17 @@
 				</div>
 
 				<div class="row">
-					<div class="col col-100 dayLabel">tap to select days</div>
+					<div class="col col-100 dayLabel" ng-if="dayFilters==0">tap to select days</div>
+					<div class="col col-100 dayLabel" ng-if="dayFilters>0">
+						<span ng-if="modalDays[0].checked">Mon, </span>
+						<span ng-if="modalDays[1].checked">Tue, </span>
+						<span ng-if="modalDays[2].checked">Wed, </span>
+						<span ng-if="modalDays[3].checked">Thu, </span>
+						<span ng-if="modalDays[4].checked">Fri, </span>
+						<span ng-if="modalDays[5].checked">Sat, </span>	
+						<span ng-if="modalDays[6].checked">Sun, </span>		
+					</div>
+							
 				</div>
 			</ion-item>
 
@@ -27,7 +37,11 @@
 					<div class="col col-100" id="dayHeader">Category</div>
 				</div>
 				<div class="row">
-					<div class="col col-100 dayLabel">tap to select categories</div>
+					
+					<div class="col col-100 dayLabel">
+						<span ng-repeat="c in catData" ng-if="c.checked==true">{{c.cat}}, </span>
+					</div> 
+											
 				</div>
 			</ion-item>
 

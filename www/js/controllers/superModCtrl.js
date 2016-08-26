@@ -5,7 +5,7 @@ module.controller('superModCtrl',function($scope, $state, allInfo, restService, 
   //call the rest service every time the view is entered
   //ensures the list will be updated after making a change in edit view as it redirects to here
   $scope.$on('$ionicView.enter', function() {
-    restService.getAct().then(function successCallback(result) {  
+    restService.staffAct().then(function successCallback(result) {  
       $scope.activities = result;
       }, function errorCallback(response) {
         console.log("failed");
@@ -25,7 +25,12 @@ module.controller('superModCtrl',function($scope, $state, allInfo, restService, 
   //Use allInfo service to share information between this view and edit view
   $scope.editPage = function(item) {
     allInfo.edit = item.data;
-    $state.go('app.super.edit');
+      if(AuthService.role()==='admin_role'){
+        $state.go('app.admin.edit');
+      }
+      else {
+        $state.go('app.super.edit');
+      }
   } 
 
 });

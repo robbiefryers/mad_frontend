@@ -2,7 +2,7 @@ angular.module('maryhillConstants', [])
 
 
 .constant('ApiEndpoint',{
-  url: 'http://52.210.15.63/'
+  url: 'https://52.210.15.63/'
 }) 
 
 

@@ -1,9 +1,12 @@
 var module = angular.module('maryhillControllers');
 
-module.controller('superEditCtrl',function($scope, $state, allInfo, restService, timePicker, $ionicPopup){
+module.controller('superEditCtrl',function($scope, $state, AuthService, allInfo, restService, timePicker, $ionicPopup){
 
 	//set sharedInfo to data passed by modify view
 	$scope.sharedInfo = allInfo.edit;
+
+	$scope.role = AuthService.role();
+	$scope.owner = {username:null};
 
 
 	//Call the API to get a list of all the categories
@@ -74,6 +77,7 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 		contactEmail: $scope.sharedInfo.contactEmail,
 		number: $scope.sharedInfo.number,
 		special: $scope.sharedInfo.special,
+		owner: null,
 		days: $scope.days,
 		cats: $scope.sharedInfo.cats
 	};
@@ -112,7 +116,21 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 		timePicker.decreaseEnd(item);
 	};
 
+	$scope.delete = function() {
+		restService.delAct($scope.sharedInfo.id).then(function(msg) {
+			var alertPopup = $ionicPopup.alert({
+      	title: 'Activity Removed',
+        template: 'The activity was successfully removed from the database'
+      });
+     	alertPopup.then(function(res) {
+				$scope.checkRole();    
+    	});
+		}, function(msg){
+			//unreachable code as event will always be found before delete
+		});
 
+	}
+	
 	//function that takes care of getting the users selections into the correct JSON format
 	//The data is sent via the PUT method in the restService
 	//most of the logic is concerned with the days and category arrays
@@ -138,15 +156,54 @@ module.controller('superEditCtrl',function($scope, $state, allInfo, restService,
 				$scope.jsonInfo.cats.push(catObj);
 			}
 		}
+    if(AuthService.role()==='admin_role'){
+      var ownObj = new Object();
+      ownObj.username = AuthService.uName();
+      $scope.jsonInfo.owner = ownObj;
+    }
+
+    else {
+      if ($scope.owner.username!=null){
+        var ownObj = new Object();
+        ownObj.username = $scope.owner.username;
+        $scope.jsonInfo.owner = ownObj;      
+      }
+    }
+
 		//once data is ready convert all to proper json format ready for http request
 		$scope.eventJSON = angular.toJson($scope.jsonInfo);
-
 		restService.putAct($scope.eventJSON, $scope.sharedInfo.id).then(function(msg) {
-			alert("success " + msg);
-			$state.go('app.super.modify');
+
+	    var alertPopup = $ionicPopup.alert({
+	     	title: "Event Updated",
+	      template: "Changes successfully made!",
+	      okType: "button-positive"
+	    });
+    
+	    alertPopup.then(function(res) {
+	    	$scope.checkRole();
+	    });
+
 		}, function(msg){
-			alert("fail " + msg);
+	    var alertPopup = $ionicPopup.alert({
+	     	title: "Event Update Failed",
+	      template: "The name, venue and ages fields must not be empty!",
+	      okType: "button-positive"
+	    });
+	    alertPopup.then(function(res) {
+				$scope.checkRole();    
+    	});
 		});
 	}
 	
+	$scope.checkRole = function() {
+		if(AuthService.role()==='admin_role'){
+			$state.go('app.admin.modify');
+		}
+		else {
+			$state.go('app.super.modify');
+		}
+	}
+
+
 })
