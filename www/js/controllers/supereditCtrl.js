@@ -6,7 +6,13 @@ module.controller('superEditCtrl',function($scope, $state, AuthService, allInfo,
 	$scope.sharedInfo = allInfo.edit;
 
 	$scope.role = AuthService.role();
-	$scope.owner = {username:null};
+	if($scope.sharedInfo.owner===null){
+		$scope.owner = {username:null};
+	}
+	else {
+		
+		$scope.owner = {username:$scope.sharedInfo.owner.username};
+	}
 
 
 	//Call the API to get a list of all the categories

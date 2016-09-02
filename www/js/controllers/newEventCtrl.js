@@ -22,13 +22,13 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, AuthServic
   $scope.jsonData= {
     name: null,
     venue: null,
-    postcode: null,
-    agesLower: null,
-    agesUpper: null,
+    postcode: "",
+    agesLower: 3,
+    agesUpper: 99,
     contactName: null,
     contactEmail: null,
-    number: null,
-    special: null,
+    number: "",
+    special: "",
     owner: null,
     days: [],
     cats: []
@@ -116,7 +116,11 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, AuthServic
       });
    
     }, function(msg){
-      alert("fail " + msg);
+      var alertPopup = $ionicPopup.alert({
+        title: "Event Creation Faied",
+        template: "The new event was not added to the directory, please fill all required fields",
+        okType: "button-positive"
+      });
     });
   };
 

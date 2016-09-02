@@ -20,8 +20,8 @@
 
 
   <!--ng-Style= "{'font-size': size + 'px'}"-->
-  <ion-slide-box class="" on-slide-changed="slideChanged(index)" >
-    <ion-slide>
+  <ion-slide-box on-slide-changed="slideChanged(index)" >
+    <ion-slide class="pageContent">
       <h3>Welcome to the Maryhill Activity Directory App!</h3>
       <div id="logo">
         <img class="iconImg" src="./img/icon.png">
@@ -34,10 +34,11 @@
       </p>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide class="pageContent">
+    <ion-content id="slideContent">
       <h3>Activity List</h3>
       <div class="row">
-        <div class="col col-100 infoText">
+        <div class="col col-100">
           The first thing you'll see is the activities list. It shows all the activites going on right now in Maryhill!
         </div>
       </div>
@@ -53,10 +54,11 @@
          The main page only shows the key information. If you want to find out more, just tap on any activity in the list to get more details.
         </div>
       </div>
-
+    </ion-content>
     </ion-slide>    
 
-    <ion-slide>
+    <ion-slide class="pageContent">
+    <ion-content id="slideContent">
       <h3>Finding Activities</h3>
       <div class="row">
         <div class="col col-100 infoText">
@@ -75,11 +77,11 @@
          Not sure what you're looking for yet? No problem, tap the filter button next to the search bar to bring up a list of filter options.
         </div>
       </div>
-
+    </ion-content>
     </ion-slide>
 
-    <ion-slide>
-    <ion-content class="tutorialContent">
+    <ion-slide class="pageContent">
+    <ion-content id="slideContent">
       <h3>Filters</h3>
       <div class="row">
         <div class="col col-10"></div>
@@ -91,14 +93,14 @@
 
       <div class="row">
         <div class="col col-100 infoText">
-          You can filter activities using any cobination of days, catergory, times and ages. Select all your choices and press OK to see all activities that match your search, easy!
+          You can filter activities using any combination of days, category, times and ages. Select all your choices and press OK to see all activities that match your search, easy!
         </div>
       </div>
       </ion-content>
     </ion-slide>
 
-    <ion-slide>
-    <ion-content class="tutorialContent">
+    <ion-slide class="pageContent">
+    <ion-content id="slideContent">
       <h3>Detailed Info</h3>
       <div class="row">
         <div class="col col-100 infoText">
@@ -142,7 +144,7 @@
             <i class="icon ion-clipboard iconI"></i>
         </div>
         <div class="col col-90 tutDetails">
-          Any special futher information about the activity, such as if it's only on fortnightly or if its a ladies only event etc.
+          Any special futher information about the activity, such as if it's only on fortnightly or if it's a ladies only event etc.
         </div>
       </div>
       <div class="row">

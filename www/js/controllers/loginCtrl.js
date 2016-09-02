@@ -63,7 +63,7 @@ module.controller('LoginCtrl', function ($scope, AuthService, $state, ApiEndpoin
 									$ionicHistory.nextViewOptions({
 				  					disableBack: true
 									});
-									$state.go('app.admin');
+									$state.go('app.admin.modify');
 									$scope.setStatus("admin");
 
 								}, function(res) {

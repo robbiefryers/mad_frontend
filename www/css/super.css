@@ -20,6 +20,10 @@
 	background-color: #054063;
 }
 
+.platform-ios .infoHeader{
+	top: 60px !important;
+}
+
 .searchHeader {
 	height: 70px;
 	padding: 0px;
@@ -27,10 +31,17 @@
 	background-color: #054063;
 }
 
-.modifyContent {
-	top:144px;
+.platform-ios .searchHeader{
+	top: 85px !important;
 }
 
+.modifyContent {
+	top:150px;
+}
+
+.platform-ios .modifyContent{
+	top: 155px !important;
+}
 
 
 /*--------------- New Event Tab ---------------*/

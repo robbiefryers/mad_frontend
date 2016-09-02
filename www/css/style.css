@@ -12,11 +12,20 @@
 .has-header {
    top: 44px;
 }
+.platform-ios .has-header {
+	top: 64px !important;
+}
+
 
 /*Sub header height is 43px, add this to main header height if content has a subheader*/
 .has-subheader {
    top: 86px;
 }
+
+.platform-ios .has-subheader {
+	top: 120px !important;
+}
+
 
 .odd {
   background-color: #f2f2f2;
@@ -170,14 +179,3 @@ color: black;
 	bottom: -1px !important;
 }
 
-/* Overwrites-fixes ionic header for ios6 */
-.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-header:not(.bar-subheader){
-    height: 44px;
-}
-.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    margin-top: 0px;
-}
-.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .has-header,
-.platform-ios.platform-cordova.platform-ios6:not(.fullscreen) .bar-subheader {
-    top: 44px;
-}

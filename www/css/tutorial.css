@@ -1,10 +1,76 @@
-.tutorialContent {
-  top: 0;
+.slider {
+height: 100%;
+}
+
+.pageContent {
+  top: 60px;
+  text-align: center;
+  bottom: 10% !important;
+  height: 85%;
+}
+
+.platform-ios .pageContent {
+  top: 80px;
+
+}
+
+.iconImg {
+    width: 50%;
+  max-width: 400px;
+}
+
+#logo {
+  margin: 30px 0px;
+}
+
+.actImg {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.slider-pager {
+  bottom: 25px !important;
+}
+.slider-pager {
+  bottom: 0;
+}
+
+
+.tutImg {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+#slideContent {
+  top: 0 !important;
+  margin-top: 0px !important;
+  height: 90% !important;
+
+}
+
+.tutIcon {
+  font-size: 35px;
+  color: #4d4d4d;
+}
+
+/*.tutorialContent {
+  top: 0 !important;
+  margin-top: 0px !important;
   bottom: 110px;
 }
+
+.tutImg {
+  width: 100%;
+  max-width: 400px;
+}
+
 .slider {
   height: 100%;
 }
+
+
 .slider-slide {
   top: 60px;
   color: #000;
@@ -53,4 +119,4 @@
   text-align: justify;
   padding-left: 10px;
   padding-right: 10px;
-}
+}*/
