@@ -1,3 +1,7 @@
+/*
+#962D6C = purple
+#054063 = blue
+*/
 .activityBody {
 	font-size: 12px;
 	top: 154px;
@@ -16,7 +20,7 @@
 }
 
 #filterRow {
-	background-color: #054063;
+	background-color: #962D6C;
 }
 
 #filterBar {

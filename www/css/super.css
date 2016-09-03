@@ -17,7 +17,7 @@
 	top:44px;
 	border-bottom: 0px;
 	color: white;
-	background-color: #054063;
+	background-color: #962D6C;
 }
 
 .platform-ios .infoHeader{
@@ -28,7 +28,7 @@
 	height: 70px;
 	padding: 0px;
 	top:74px;
-	background-color: #054063;
+	background-color: #962D6C;
 }
 
 .platform-ios .searchHeader{
@@ -51,14 +51,14 @@
 
 .newEvent {
 	font-size:35px;
-	color:#054063;
+	color:#962D6C;
 }
 .newEventLabel {
 	height:55px;
 }
 .newEventTitle {
 	font-size:20px;
-	color:#054063;
+	color:#962D6C;
 	padding-top: 10px;
 }
 

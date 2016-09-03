@@ -5,7 +5,7 @@
 				<div class="list list-inset" id="filterBar">
 					<label class="item item-input">
 						<i class="icon ion-ios-people-outline placeholder-icon"></i>
-						<input type="text" data-ng-model="searchText.name" placeholder="All Activities">
+						<input type="text" data-ng-model="searchText.name" placeholder="All Activities" ng-model-options="{ debounce: 700 }">
 					</label>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
 		
-			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchText" ng-click="movePage({data: item})" ng-model-options="{ debounce: { 'default': 3000} }">
+			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchText track by $index" ng-click="movePage({data: item})">
 				<a class="row" id="actLink">
 					<div class="col col-25">{{item.name}}</div>
 					<div class="col col-25"><p ng-repeat="d in item.days">{{d.day}}</p></div>

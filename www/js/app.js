@@ -31,7 +31,7 @@ angular.module('maryhill', ['ionic', 'maryhillControllers', 'ui.router', 'maryhi
     }
     if(window.StatusBar) {
       if (ionic.Platform.isAndroid()) {
-      StatusBar.backgroundColorByHexString("#074063");
+      StatusBar.backgroundColorByHexString("#962D6C");
     } else {
       StatusBar.overlaysWebView(true);
       StatusBar.style(1); //Light

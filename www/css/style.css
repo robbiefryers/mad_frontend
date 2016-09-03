@@ -156,7 +156,7 @@ color: black;
 }
 
 .toggle input:checked + .track {
-    background-color: #054360 !important;
+    background-color: #962D6C !important;
     border-color:#E5D390;
 }
 
