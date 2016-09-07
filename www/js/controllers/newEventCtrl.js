@@ -2,6 +2,9 @@ var module = angular.module('maryhillControllers');
 
 module.controller('newEventCtrl',function($scope, $state, timePicker, AuthService, restService, $ionicPopup ){
 
+
+  $scope.disableButton = false;
+
   //Initialise days array using the JSON array in timePicker service
   $scope.blankDays = timePicker.blank();
 
@@ -61,6 +64,7 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, AuthServic
   };
 
   $scope.create = function() {
+    $scope.disableButton = true;
     for(i=0; i<$scope.blankDays.length; i++){
       if($scope.blankDays[i].startHour!=null){
         var temp = new Object();
@@ -116,6 +120,7 @@ module.controller('newEventCtrl',function($scope, $state, timePicker, AuthServic
       });
    
     }, function(msg){
+      $scope.disableButton = false;
       var alertPopup = $ionicPopup.alert({
         title: "Event Creation Faied",
         template: "The new event was not added to the directory, please fill all required fields",

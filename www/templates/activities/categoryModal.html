@@ -9,7 +9,7 @@
 	<ion-content id="modalHeaderD">
 
 		<ion-list ng-repeat="item in catData">
-			<ion-checkbox ng-model="catData[$index].checked">{{item.cat}}</ion-checkbox>
+			<ion-checkbox ng-model="catData[$index].checked" ng-click="catsChanged([$index])">{{item.cat}}</ion-checkbox>
 		</ion-list>
 
 

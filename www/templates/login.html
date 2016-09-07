@@ -13,7 +13,7 @@
 				<label class="item item-input">
 					<input type="password" name="password" placeholder="Password" ng-model="user.password">
 				</label>
-				<button class="button button-block button-positive" ng-click="logIn()">Log In</button>
+				<button class="button button-block button-positive" ng-click="logIn()" ng-disabled="disableButton">Log In</button>
 			</div>
 		</form>
 	</ion-content>

@@ -37,8 +37,8 @@
 					<div class="col col-100" id="dayHeader">Category</div>
 				</div>
 				<div class="row">
-					
-					<div class="col col-100 dayLabel">
+					<div class="col col-100 dayLabel" ng-if="catFilters==0">tap to select categories</div>
+					<div class="col col-100 dayLabel" ng-if="catFilters>0">
 						<span ng-repeat="c in catData" ng-if="c.checked==true">{{c.cat}}, </span>
 					</div> 
 											

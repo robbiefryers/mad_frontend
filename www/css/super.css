@@ -32,7 +32,7 @@
 }
 
 .platform-ios .searchHeader{
-	top: 85px !important;
+	top: 90px !important;
 }
 
 .modifyContent {
@@ -47,6 +47,13 @@
 /*--------------- New Event Tab ---------------*/
 .newAges {
 	color:#D9D9D9 !important;
+}
+
+.newCheckbox {
+  white-space: nowrap !important;
+  text-overflow: clip !important;
+  display: block !important;
+  overflow: hidden !important;
 }
 
 .newEvent {

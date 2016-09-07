@@ -32,7 +32,7 @@
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
 		
-			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in myData | filter: searchText track by $index" ng-click="movePage({data: item})">
+			<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in randomActivityList | filter: searchText | limitTo : 50 | orderBy:'rank' track by item.id" ng-click="movePage({data: item})">
 				<a class="row" id="actLink">
 					<div class="col col-25">{{item.name}}</div>
 					<div class="col col-25"><p ng-repeat="d in item.days">{{d.day}}</p></div>

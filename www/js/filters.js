@@ -57,7 +57,6 @@ angular.module('maryhillFilters', [])
 					passes++;
 				}
 			}
-			console.log(passes);
 			if(passes==4){out.push(individualItem);}
 			
 		});

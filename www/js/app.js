@@ -254,6 +254,32 @@ $stateProvider
     }
 })
 
+.directive('input', function($timeout){
+     return {
+         restrict: 'E',
+         scope: {
+             'returnClose': '=',
+             'onReturn': '&'
+        },
+        link: function(scope, element, attr){
+            element.bind('keydown', function(e){
+                if(e.which == 13){
+                    if(scope.returnClose){
+                        console.log('return-close true: closing keyboard');
+                        element[0].blur();
+                    }
+                    if(scope.onReturn){
+                        console.log('on-return set: executing');
+                        $timeout(function(){
+                            cordova.plugins.Keyboard.close();
+                        });                        
+                    }
+                } 
+            });   
+        }
+    }
+});
+
 /*
 .run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {

@@ -15,17 +15,22 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
   //If the activity list was successfully retrieved, fetch the category list for the cat filter modal
   //otherwise show the network error pop up
   restService.getAct().then(function successCallback(result) {  
-  	$scope.myData = result;
-		$scope.filteredData = result;
-		
-			restService.getCat().then(function successCallback(result) { 
-				$scope.catData =[];
-				for(i=0; i<result.length; i++) {
-					$scope.catData[i] = {cat: result[i].name , checked: false};
-				}
-			}, function errorCallback(response) {
-				$scope.showAlert();
-			});
+		$scope.activityList = result;
+		$scope.randomActivityList = [];
+
+		angular.forEach($scope.activityList, function(item) {
+			item.rank = 0.5 - Math.random();
+    	$scope.randomActivityList.push(item);
+		});
+
+		restService.getCat().then(function successCallback(result) { 
+			$scope.catData =[];
+			for(i=0; i<result.length; i++) {
+				$scope.catData[i] = {cat: result[i].name , checked: false};
+			}
+		}, function errorCallback(response) {
+			$scope.showAlert();
+		});
 
   }, function errorCallback(response) {
 		$scope.showAlert();
@@ -49,6 +54,7 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 	$scope.startTime = 8;
 	$scope.endTime = 24;
 	$scope.dayFilters = 0;
+	$scope.catFilters = 0;
 
 	//function used to control whether to show list of selected days OR the tap to select days div
 	$scope.daysChanged = function(i) {
@@ -59,6 +65,17 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 			$scope.dayFilters--;
 		}
 	}
+
+	//function used to control whether to show list of selected cats OR the tap to select cats div
+	$scope.catsChanged = function(i) {
+		if($scope.catData[i].checked==true){
+			$scope.catFilters++;
+		}
+		else {
+			$scope.catFilters--;
+		}
+	}
+
 	//invoked by filterMainModals 'Ok' button, firstly close the modal and then display the loading overlay
 	$scope.filters = function() {
 		$scope.closeModal(1);
@@ -79,9 +96,9 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 					catss.push($scope.catData[i].cat);
 				}
 			}
-			/*Pass in a copy of all the data and filter selections and reassign myData(used by then ng-repeat in view)
+			/*Pass in a copy of all the data and filter selections and reassign activityList(used by then ng-repeat in view)
 			 to the result of the filtered data, hide the loading overlay on completion*/
-			$scope.myData = $filter('searchAll')($scope.filteredData, dayss, $scope.startTime, $scope.endTime, $scope.agesLow, $scope.agesUp, catss);
+			$scope.randomActivityList = $filter('searchAll')($scope.activityList, dayss, $scope.startTime, $scope.endTime, $scope.agesLow, $scope.agesUp, catss);
 			$ionicLoading.hide();
 		}, 300);
 	}
@@ -95,13 +112,14 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 			$scope.startTime = 8;
 			$scope.endTime = 24;
 			$scope.dayFilters = 0;
+			$scope.catFilters = 0;
 			for(i=0; i<7; i++){
 				$scope.modalDays[i].checked=false;
 			}
 			for(i=0; i<$scope.catData.length; i++){
 				$scope.catData[i].checked=false;
 			}
-			$scope.myData = $scope.filteredData;
+			$scope.randomActivityList = $scope.activityList;
 			$ionicLoading.hide();	
 		}, 300);
 	}
@@ -139,7 +157,7 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 
 	$scope.increaseLowAge = function() {
 		if($scope.agesLow !=60) {
-			if($scope.agesLow+5 == $scope.agesUp){
+			if($scope.agesLow == $scope.agesUp){
 				$scope.agesUp +=5;
 			}
 			$scope.agesLow +=5;
@@ -160,7 +178,7 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
 	$scope.decreaseHighAge = function() {
 
 		if($scope.agesUp != 5){
-			if($scope.agesUp-5 == $scope.agesLow){		
+			if($scope.agesUp == $scope.agesLow){		
 				$scope.agesLow -=5;
 			}
 			$scope.agesUp -= 5;
@@ -226,8 +244,8 @@ module.controller('ActivityCtrl', function($scope, $timeout, allInfo, restServic
   //Pull to refresh fuction
 	$scope.doRefresh = function() {
 		restService.getAct().then(function successCallback(result) {  
-			$scope.myData = result;
-			$scope.filteredData = result;
+			$scope.activityList = result;
+			$scope.randomActivityList = result;
 		}, function errorCallback(response) {
 			$scope.showAlert();
 		});

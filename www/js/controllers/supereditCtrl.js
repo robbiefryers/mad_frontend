@@ -141,6 +141,7 @@ module.controller('superEditCtrl',function($scope, $state, AuthService, allInfo,
 	//The data is sent via the PUT method in the restService
 	//most of the logic is concerned with the days and category arrays
 	$scope.update = function() {
+		$scope.disableButton=true;
 		$scope.daysJSON =[];
 		for(i=0; i<$scope.days.length; i++){
 			if($scope.days[i].startHour!=null){
@@ -191,6 +192,7 @@ module.controller('superEditCtrl',function($scope, $state, AuthService, allInfo,
 	    });
 
 		}, function(msg){
+			$scope.disableButton=false;
 	    var alertPopup = $ionicPopup.alert({
 	     	title: "Event Update Failed",
 	      template: "The name, venue and ages fields must not be empty!",

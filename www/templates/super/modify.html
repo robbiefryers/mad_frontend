@@ -16,7 +16,7 @@
 			<div class="col col-100">		
 				<label class="item item-input">
 					<i class="icon ion-search placeholder-icon"></i>
-					<input type="text" data-ng-model="searchText.name" placeholder="Search Activities">
+					<input type="text" data-ng-model="searchText.name" placeholder="Search Activities" ng-model-options="{ debounce: 700 }">
 				</label>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 
 
 	<ion-content class="modifyContent">
-		<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in activities | filter: searchText"" ng-click="editPage({data: item})">
+		<ion-item class="rowItem" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="item in activities | filter: searchText | limitTo : 50 track by item.id" ng-click="editPage({data: item})">
 			<a class="row" id="actLink">
 				<div class="col col-100">{{item.name}}</div>
 			</a>
